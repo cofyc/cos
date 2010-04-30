@@ -1,3 +1,3 @@
-CoStats.xcodeproj/*.mode1v3
-CoStats.xcodeproj/*.pbxuser
+*.xcodeproj/*.mode1v3
+*.xcodeproj/*.pbxuser
 build

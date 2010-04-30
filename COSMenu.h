@@ -2,9 +2,9 @@
 
 
 @interface COSMenu : NSObject {
+	NSStatusBar *_statusBar;
 	NSStatusItem *_statusItem;
-	NSImage *_statusImage;
-	CGFloat _height;
+	CGFloat _mem_percent;
 }
 
 + (COSMenu *)shared;

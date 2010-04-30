@@ -15,32 +15,29 @@ static COSMenu *_sharedCOSMenu = nil;
 - (id)init
 {
 	if (self == [super init]) {
-		_statusImage = [[NSImage alloc] initWithSize:NSMakeSize(20,  20)];
-		_height = 10.0;
-		[self show];
+		_mem_percent = 0.0;
+		
+		// show menu
+		NSLog(@"show menu");
+		_statusBar = [NSStatusBar systemStatusBar];
+		_statusItem = [[_statusBar statusItemWithLength:NSVariableStatusItemLength] retain];
+		[_statusItem setHighlightMode:YES];
+		NSMenu	*menu;
+		NSMenuItem *menuItem;
+		// Menu
+		menu = [[NSMenu alloc] initWithTitle:@""];
+		// Menu Item: Quit
+		menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(closeApp:) keyEquivalent:@"q"];
+		[menuItem setTarget: self];
+		[menu addItem:menuItem];
+		// set AutoEnablesItem
+		[_statusItem setMenu: menu];
+		[_statusItem setTarget: self];
+		[self update];
 		return self;
 	} else {
 		return nil;
 	}
-}
-
-- (void)show
-{
-	NSLog(@"show menu");
-	_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[_statusItem setHighlightMode:YES];
-	NSMenu	*menu;
-	NSMenuItem *menuItem;
-	// Menu
-	menu = [[NSMenu alloc] initWithTitle:@""];
-	// Menu Item: Quit
-	menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(closeApp:) keyEquivalent:@"q"];
-	[menuItem setTarget: self];
-	[menu addItem:menuItem];
-	// set AutoEnablesItem
-	[_statusItem setMenu: menu];
-	[_statusItem setTarget: self];
-	[self update];
 }
 
 - (void)closeApp:(id)sender
@@ -50,23 +47,33 @@ static COSMenu *_sharedCOSMenu = nil;
 	 
 - (void)update
 {
-	_height--;
-	NSLog(@"update menu, height: %f", _height);
-	[_statusImage lockFocus];
-	NSRect		imageRect;
-	imageRect.size	 = [_statusImage size];
-	NSBezierPath *path = [[NSBezierPath alloc] init];
-	[path moveToPoint:NSMakePoint(0, _height)];
-	[path lineToPoint:NSMakePoint(20, _height)];
+	#define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
+	// Currently, system status bar's height(thickness) and width(length) are 22 pixels.
+	CGFloat imageHeight = 22.0;
+	CGFloat imageWidth = 22.0;
+	CGFloat imageChartRadius = 8.5;
+	NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
+	NSRect imageChartRect = NSMakeRect(imageChartCenter.x - imageChartRadius, imageChartCenter.y - imageChartRadius, imageChartRadius * 2, imageChartRadius *2);
+	NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
+	_mem_percent += 0.1;
+	NSLog(@"update menu, mem_percent: %f", _mem_percent);
+	[myImage lockFocus];
+	
 	[[NSColor blueColor] set];
-	//[@"text" drawAtPoint: NSZeroPoint withAttributes: nil];
-	[path stroke];
-	[_statusImage unlockFocus];
-	[_statusImage	drawAtPoint: NSMakePoint(0.0, 0.0)
-			  fromRect: imageRect
-			 operation: NSCompositeSourceOver
-			  fraction: 1.0];
-	[_statusItem setImage:_statusImage];
+	NSBezierPath* path = [NSBezierPath bezierPathWithOvalInRect: imageChartRect];
+	[path fill];
+
+	// draw string example
+	NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"%" attributes:STRING_ATTR];
+	NSSize stringSize = [stringToDraw size];
+	stringSize.height -= 1;
+	NSPoint destPoint = NSMakePoint((22 - stringSize.width) / 2, ((22 - stringSize.height) / 2));
+	[stringToDraw drawAtPoint:destPoint];
+	
+	[myImage unlockFocus];
+	
+	// set image
+	[_statusItem setImage:myImage];
 }
 
 @end

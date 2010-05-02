@@ -1,5 +1,4 @@
 #import "COMemoryStats.h"
-#import "COStats.h"
 
 
 @implementation COMemoryStats

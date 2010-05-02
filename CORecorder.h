@@ -1,5 +1,6 @@
 #import <Cocoa/Cocoa.h>
-#import "COMenu.h"
+
+@class COMenu;
 
 @interface CORecorder : NSObject {
     NSTimer *_checkTimer;

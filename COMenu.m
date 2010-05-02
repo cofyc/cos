@@ -1,8 +1,13 @@
 #import "COMenu.h"
 
-static COMenu *_sharedCOMenu = nil;
-
 @implementation COMenu
+
+static COMenu *_sharedCOMenu = nil;
+static NSStatusBar *_statusBar = nil;
+static NSStatusItem *_statusItem = nil;
+static CGFloat _mem_percent = 0;
+
+//@synthesize _statusBar, _statusItem, _mem_percent;
 
 + (COMenu *)shared
 {

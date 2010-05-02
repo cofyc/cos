@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface COSMemoryStats : NSObject {
+@interface COMemoryStats : NSObject {
 
 }
 

@@ -10,11 +10,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		FB824132118D5486000B6969 /* COSMemoryStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824131118D5486000B6969 /* COSMemoryStats.m */; };
-		FB82413A118D562A000B6969 /* COSMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98173118ADDD500282BEC /* COSMenu.m */; };
+		FB824171118D5BB7000B6969 /* COStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824170118D5BB7000B6969 /* COStats.m */; };
+		FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824176118D5D68000B6969 /* COMemoryStats.m */; };
+		FB82417F118D5D68000B6969 /* COMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824177118D5D68000B6969 /* COMenu.m */; };
+		FB824180118D5D68000B6969 /* CORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824179118D5D68000B6969 /* CORecorder.m */; };
+		FB824181118D5D68000B6969 /* COAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppDelegate.m */; };
 		FBD9816D118ADD1900282BEC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD9816B118ADD1900282BEC /* MainMenu.xib */; };
-		FBD98175118ADDD500282BEC /* COSRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98172118ADDD500282BEC /* COSRecorder.m */; };
-		FBD98177118ADDD500282BEC /* COSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98174118ADDD500282BEC /* COSAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,15 +28,17 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB824130118D5486000B6969 /* COSMemoryStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSMemoryStats.h; sourceTree = "<group>"; };
-		FB824131118D5486000B6969 /* COSMemoryStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSMemoryStats.m; sourceTree = "<group>"; };
+		FB82416F118D5BB7000B6969 /* COStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COStats.h; sourceTree = "<group>"; };
+		FB824170118D5BB7000B6969 /* COStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COStats.m; sourceTree = "<group>"; };
+		FB824176118D5D68000B6969 /* COMemoryStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COMemoryStats.m; sourceTree = "<group>"; };
+		FB824177118D5D68000B6969 /* COMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COMenu.m; sourceTree = "<group>"; };
+		FB824178118D5D68000B6969 /* COMemoryStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COMemoryStats.h; sourceTree = "<group>"; };
+		FB824179118D5D68000B6969 /* CORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecorder.m; sourceTree = "<group>"; };
+		FB82417A118D5D68000B6969 /* CORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecorder.h; sourceTree = "<group>"; };
+		FB82417B118D5D68000B6969 /* COMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COMenu.h; sourceTree = "<group>"; };
+		FB82417C118D5D68000B6969 /* COAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppDelegate.m; sourceTree = "<group>"; };
+		FB82417D118D5D68000B6969 /* COAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppDelegate.h; sourceTree = "<group>"; };
 		FBD9816C118ADD1900282BEC /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		FBD9816F118ADDD500282BEC /* COSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSAppDelegate.h; sourceTree = "<group>"; };
-		FBD98170118ADDD500282BEC /* COSRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSRecorder.h; sourceTree = "<group>"; };
-		FBD98171118ADDD500282BEC /* COSMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSMenu.h; sourceTree = "<group>"; };
-		FBD98172118ADDD500282BEC /* COSRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSRecorder.m; sourceTree = "<group>"; };
-		FBD98173118ADDD500282BEC /* COSMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSMenu.m; sourceTree = "<group>"; };
-		FBD98174118ADDD500282BEC /* COSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +56,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FBD9816F118ADDD500282BEC /* COSAppDelegate.h */,
-				FBD98174118ADDD500282BEC /* COSAppDelegate.m */,
-				FBD98171118ADDD500282BEC /* COSMenu.h */,
-				FBD98173118ADDD500282BEC /* COSMenu.m */,
-				FBD98170118ADDD500282BEC /* COSRecorder.h */,
-				FBD98172118ADDD500282BEC /* COSRecorder.m */,
-				FB824130118D5486000B6969 /* COSMemoryStats.h */,
-				FB824131118D5486000B6969 /* COSMemoryStats.m */,
+				FB824176118D5D68000B6969 /* COMemoryStats.m */,
+				FB824177118D5D68000B6969 /* COMenu.m */,
+				FB824178118D5D68000B6969 /* COMemoryStats.h */,
+				FB824179118D5D68000B6969 /* CORecorder.m */,
+				FB82417A118D5D68000B6969 /* CORecorder.h */,
+				FB82417B118D5D68000B6969 /* COMenu.h */,
+				FB82417C118D5D68000B6969 /* COAppDelegate.m */,
+				FB82417D118D5D68000B6969 /* COAppDelegate.h */,
+				FB82416F118D5BB7000B6969 /* COStats.h */,
+				FB824170118D5BB7000B6969 /* COStats.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -187,10 +192,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				FBD98175118ADDD500282BEC /* COSRecorder.m in Sources */,
-				FBD98177118ADDD500282BEC /* COSAppDelegate.m in Sources */,
-				FB824132118D5486000B6969 /* COSMemoryStats.m in Sources */,
-				FB82413A118D562A000B6969 /* COSMenu.m in Sources */,
+				FB824171118D5BB7000B6969 /* COStats.m in Sources */,
+				FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */,
+				FB82417F118D5D68000B6969 /* COMenu.m in Sources */,
+				FB824180118D5D68000B6969 /* CORecorder.m in Sources */,
+				FB824181118D5D68000B6969 /* COAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

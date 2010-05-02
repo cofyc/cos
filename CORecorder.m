@@ -1,10 +1,10 @@
-#import "COSRecorder.h"
+#import "CORecorder.h"
 
-static COSRecorder *_sharedRecorder = nil;
+static CORecorder *_sharedRecorder = nil;
 
-@implementation COSRecorder
+@implementation CORecorder
 
-+ (COSRecorder *)shared
++ (CORecorder *)shared
 {
     if (!_sharedRecorder) {
         _sharedRecorder = [self alloc];
@@ -12,7 +12,7 @@ static COSRecorder *_sharedRecorder = nil;
     return _sharedRecorder;
 }
 
-- (id)initWithMenu:(COSMenu *)menu
+- (id)initWithMenu:(COMenu *)menu
 {
     [self init];
     _menu = menu;

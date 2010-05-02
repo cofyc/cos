@@ -1,13 +1,13 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface COSMenu : NSObject {
+@interface COMenu : NSObject {
     NSStatusBar *_statusBar;
     NSStatusItem *_statusItem;
     CGFloat _mem_percent;
 }
 
-+ (COSMenu *)shared;
++ (COMenu *)shared;
 
 - (void)update;
 

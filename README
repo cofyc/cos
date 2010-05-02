@@ -3,6 +3,6 @@ App
     Name: CoStats
 
 Project
----
+-------
     Name: cos (c of stats)
-    Class Prefix Name: COS
+    Class Domain Name: CO

@@ -1,15 +1,15 @@
-#import "COSMenu.h"
+#import "COMenu.h"
 
-static COSMenu *_sharedCOSMenu = nil;
+static COMenu *_sharedCOMenu = nil;
 
-@implementation COSMenu
+@implementation COMenu
 
-+ (COSMenu *)shared
++ (COMenu *)shared
 {
-    if (!_sharedCOSMenu) {
-        _sharedCOSMenu = [self alloc];
+    if (!_sharedCOMenu) {
+        _sharedCOMenu = [self alloc];
     }
-    return _sharedCOSMenu;
+    return _sharedCOMenu;
 }
 
 - (id)init

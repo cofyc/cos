@@ -1,7 +1,6 @@
 //
 //  main.m
-//  cos
-//
+//  CO//
 //  Created by Cofyc on 4/30/10.
 //
 

@@ -10,10 +10,10 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		FB48C45D118AFFC9000EF05E /* COSMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FB48C45C118AFFC9000EF05E /* COSMenuItem.m */; };
+		FB824132118D5486000B6969 /* COSMemoryStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824131118D5486000B6969 /* COSMemoryStats.m */; };
+		FB82413A118D562A000B6969 /* COSMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98173118ADDD500282BEC /* COSMenu.m */; };
 		FBD9816D118ADD1900282BEC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD9816B118ADD1900282BEC /* MainMenu.xib */; };
 		FBD98175118ADDD500282BEC /* COSRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98172118ADDD500282BEC /* COSRecorder.m */; };
-		FBD98176118ADDD500282BEC /* COSMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98173118ADDD500282BEC /* COSMenu.m */; };
 		FBD98177118ADDD500282BEC /* COSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD98174118ADDD500282BEC /* COSAppDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +27,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB48C45B118AFFC9000EF05E /* COSMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSMenuItem.h; sourceTree = "<group>"; };
-		FB48C45C118AFFC9000EF05E /* COSMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSMenuItem.m; sourceTree = "<group>"; };
+		FB824130118D5486000B6969 /* COSMemoryStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSMemoryStats.h; sourceTree = "<group>"; };
+		FB824131118D5486000B6969 /* COSMemoryStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COSMemoryStats.m; sourceTree = "<group>"; };
 		FBD9816C118ADD1900282BEC /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FBD9816F118ADDD500282BEC /* COSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSAppDelegate.h; sourceTree = "<group>"; };
 		FBD98170118ADDD500282BEC /* COSRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSRecorder.h; sourceTree = "<group>"; };
@@ -59,8 +59,8 @@
 				FBD98173118ADDD500282BEC /* COSMenu.m */,
 				FBD98170118ADDD500282BEC /* COSRecorder.h */,
 				FBD98172118ADDD500282BEC /* COSRecorder.m */,
-				FB48C45B118AFFC9000EF05E /* COSMenuItem.h */,
-				FB48C45C118AFFC9000EF05E /* COSMenuItem.m */,
+				FB824130118D5486000B6969 /* COSMemoryStats.h */,
+				FB824131118D5486000B6969 /* COSMemoryStats.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -188,9 +188,9 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				FBD98175118ADDD500282BEC /* COSRecorder.m in Sources */,
-				FBD98176118ADDD500282BEC /* COSMenu.m in Sources */,
 				FBD98177118ADDD500282BEC /* COSAppDelegate.m in Sources */,
-				FB48C45D118AFFC9000EF05E /* COSMenuItem.m in Sources */,
+				FB824132118D5486000B6969 /* COSMemoryStats.m in Sources */,
+				FB82413A118D562A000B6969 /* COSMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

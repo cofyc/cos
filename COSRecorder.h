@@ -2,8 +2,8 @@
 #import "COSMenu.h"
 
 @interface COSRecorder : NSObject {
-	NSTimer *_checkTimer;
-	COSMenu *_menu;
+    NSTimer *_checkTimer;
+    COSMenu *_menu;
 }
 
 + (COSRecorder *)shared;

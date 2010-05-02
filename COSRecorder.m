@@ -6,26 +6,26 @@ static COSRecorder *_sharedRecorder = nil;
 
 + (COSRecorder *)shared
 {
-	if (!_sharedRecorder) {
-		_sharedRecorder = [self alloc];
-	}
-	return _sharedRecorder;
+    if (!_sharedRecorder) {
+        _sharedRecorder = [self alloc];
+    }
+    return _sharedRecorder;
 }
 
 - (id)initWithMenu:(COSMenu *)menu
 {
-	[self init];
-	_menu = menu;
-	_checkTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(record:) userInfo:nil repeats:YES];
-	return self;
+    [self init];
+    _menu = menu;
+    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(record:) userInfo:nil repeats:YES];
+    return self;
 }
 
 - (BOOL)record:(NSTimer *)timer
 {
-	NSLog(@"starting record...");
-	NSLog(@"ending record...");
-	[_menu update];
-	return TRUE;
+    NSLog(@"starting record...");
+    NSLog(@"ending record...");
+    [_menu update];
+    return TRUE;
 }
 
 @end

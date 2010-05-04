@@ -26,7 +26,7 @@ static NSTimer *_checkTimer = nil;
     [_statusItem setMenu: menu];
     [_statusItem setTarget: self];
     
-    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_checkTimer fire];
     return self;
 }
@@ -41,43 +41,44 @@ static NSTimer *_checkTimer = nil;
     /**
      * @link http://cocoadevcentral.com/d/intro_to_quartz_two/
      */
-    #define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
-    // Currently, system status bar's height(thickness) and width(length) are 22 pixels.
-    CGFloat imageHeight = 22.0;
-    CGFloat imageWidth = 22.0;
-    CGFloat imageChartRadius = 8.5;
-    NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
-
-    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
-
-    CGFloat mem_percent = [COMemoryStats getPercent];
-    [myImage lockFocus];
-    [[NSColor darkGrayColor] setStroke];
-    [[NSColor colorWithCalibratedRed:0.0 green: 0.55 blue:0.90 alpha:1.0] setFill];
-    
-    NSBezierPath *path = [NSBezierPath bezierPath];
-    [path setLineWidth:0.3];
-    NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
-    [path appendBezierPathWithOvalInRect: rect];
-    [path stroke];
-    
-    NSBezierPath *path1 = [NSBezierPath bezierPath];
-    [path1 moveToPoint:imageChartCenter];
-    NSInteger startAngle = 90;
-    NSInteger endAngle = startAngle +  (1 - mem_percent) * 360;
-    [path1 appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:startAngle endAngle:endAngle clockwise: YES];
-    [path1 fill];
+    //#define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
     // draw string example
     //    NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"%" attributes:STRING_ATTR];
     //    NSSize stringSize = [stringToDraw size];
     //    stringSize.height -= 1;
     //    NSPoint destPoint = NSMakePoint((22 - stringSize.width) / 2, ((22 - stringSize.height) / 2));
     //    [stringToDraw drawAtPoint:destPoint];
+    
+    // Currently, system status bar's height(thickness) and width(length) are 22 pixels.
+    CGFloat imageHeight = 22.0;
+    CGFloat imageWidth = 22.0;
+    CGFloat imageChartRadius = 8.5;
+    NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
+    NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
+    CGFloat mem_percent = [COMemoryStats getPercent];
 
+    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
+    
+    [myImage lockFocus];
+
+    [[NSColor darkGrayColor] setStroke];
+    [[NSColor colorWithCalibratedRed:0.0 green: 0.55 blue:0.90 alpha:1.0] setFill];
+    NSBezierPath *path1 = [NSBezierPath bezierPathWithOvalInRect:rect];
+    [path1 setLineWidth:0.3];
+    [path1 stroke];
+    
+    NSBezierPath *path2 = [NSBezierPath bezierPath];
+    [path2 moveToPoint:imageChartCenter];
+    NSInteger startAngle = 90;
+    NSInteger endAngle = startAngle +  (1 - mem_percent) * 360;
+    [path2 appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:startAngle endAngle:endAngle clockwise: YES];
+    [path2 fill];
+    
     [myImage unlockFocus];
-
+    
     // set image
     [_statusItem setImage:myImage];
+    [myImage release];
 }
 
 @end

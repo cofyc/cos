@@ -21,9 +21,7 @@ static CGFloat percent;
     host_statistics( mach_host_self(  ), HOST_VM_INFO,
                     ( host_info_t ) & vm_stat, &infoCount );
     NSInteger freeMem = pageSize * vm_stat.free_count / 1024;
-
     percent = (CGFloat) (totalMem - freeMem) / totalMem;
-    NSLog(@"page size: %d, free_count, %d, totalMem, %d, freeMem, %d, percent, %f", pageSize, vm_stat.free_count, totalMem, freeMem, percent);
     return percent;
 }
 

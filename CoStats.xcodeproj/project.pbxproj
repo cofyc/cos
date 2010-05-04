@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		FB824171118D5BB7000B6969 /* COStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824170118D5BB7000B6969 /* COStats.m */; };
 		FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824176118D5D68000B6969 /* COMemoryStats.m */; };
 		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
 		FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFCB151118DA87200CE0B97 /* MainMenu.xib */; };
@@ -24,8 +23,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB82416F118D5BB7000B6969 /* COStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COStats.h; sourceTree = "<group>"; };
-		FB824170118D5BB7000B6969 /* COStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COStats.m; sourceTree = "<group>"; };
 		FB824176118D5D68000B6969 /* COMemoryStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COMemoryStats.m; sourceTree = "<group>"; };
 		FB824178118D5D68000B6969 /* COMemoryStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COMemoryStats.h; sourceTree = "<group>"; };
 		FB82417C118D5D68000B6969 /* COAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppController.m; sourceTree = "<group>"; };
@@ -52,8 +49,6 @@
 				FB824176118D5D68000B6969 /* COMemoryStats.m */,
 				FB82417D118D5D68000B6969 /* COAppController.h */,
 				FB82417C118D5D68000B6969 /* COAppController.m */,
-				FB82416F118D5BB7000B6969 /* COStats.h */,
-				FB824170118D5BB7000B6969 /* COStats.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -178,7 +173,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				FB824171118D5BB7000B6969 /* COStats.m in Sources */,
 				FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */,
 				FB824181118D5D68000B6969 /* COAppController.m in Sources */,
 			);

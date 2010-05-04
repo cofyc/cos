@@ -1,16 +1,14 @@
 #import "COAppController.h"
+#import "COMemoryStats.h"
 
 @implementation COAppController
 
 static NSStatusBar *_statusBar = nil;
 static NSStatusItem *_statusItem = nil;
-static CGFloat _mem_percent = 0;
 static NSTimer *_checkTimer = nil;
 
 - (id)init
 {   
-    _mem_percent = 0.0;
-    
     // show menu
     NSLog(@"show menu");
     _statusBar = [NSStatusBar systemStatusBar];
@@ -52,22 +50,23 @@ static NSTimer *_checkTimer = nil;
 
     NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
 
-    _mem_percent += 0.1;
-    NSLog(@"update menu, mem_percent: %f", _mem_percent);
-
+    CGFloat mem_percent = [COMemoryStats getPercent];
     [myImage lockFocus];
-
-    [[NSColor blueColor] set];
-    NSBezierPath* path = [NSBezierPath bezierPath];
-    [path setLineWidth: 1];
-    [path moveToPoint: imageChartCenter];
-    [path appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:90 endAngle:360*_mem_percent clockwise: YES];
-    [[NSColor greenColor] set];
-    [path fill];
-
-    [[NSColor darkGrayColor] set]; 
-    //[path stroke];
-
+    [[NSColor darkGrayColor] setStroke];
+    [[NSColor colorWithCalibratedRed:0.0 green: 0.55 blue:0.90 alpha:1.0] setFill];
+    
+    NSBezierPath *path = [NSBezierPath bezierPath];
+    [path setLineWidth:0.3];
+    NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
+    [path appendBezierPathWithOvalInRect: rect];
+    [path stroke];
+    
+    NSBezierPath *path1 = [NSBezierPath bezierPath];
+    [path1 moveToPoint:imageChartCenter];
+    NSInteger startAngle = 90;
+    NSInteger endAngle = startAngle +  (1 - mem_percent) * 360;
+    [path1 appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:startAngle endAngle:endAngle clockwise: YES];
+    [path1 fill];
     // draw string example
     //    NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"%" attributes:STRING_ATTR];
     //    NSSize stringSize = [stringToDraw size];

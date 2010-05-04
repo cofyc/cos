@@ -26,7 +26,7 @@ static NSTimer *_checkTimer = nil;
     [_statusItem setMenu: menu];
     [_statusItem setTarget: self];
     
-    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _checkTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_checkTimer fire];
     return self;
 }
@@ -41,14 +41,7 @@ static NSTimer *_checkTimer = nil;
     /**
      * @link http://cocoadevcentral.com/d/intro_to_quartz_two/
      */
-    //#define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
-    // draw string example
-    //    NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"%" attributes:STRING_ATTR];
-    //    NSSize stringSize = [stringToDraw size];
-    //    stringSize.height -= 1;
-    //    NSPoint destPoint = NSMakePoint((22 - stringSize.width) / 2, ((22 - stringSize.height) / 2));
-    //    [stringToDraw drawAtPoint:destPoint];
-    
+  
     // Currently, system status bar's height(thickness) and width(length) are 22 pixels.
     CGFloat imageHeight = 22.0;
     CGFloat imageWidth = 22.0;
@@ -57,6 +50,9 @@ static NSTimer *_checkTimer = nil;
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
     CGFloat mem_percent = [COMemoryStats getPercent];
 
+   
+    
+    
     NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
     
     [myImage lockFocus];
@@ -73,6 +69,14 @@ static NSTimer *_checkTimer = nil;
     NSInteger endAngle = startAngle +  (1 - mem_percent) * 360;
     [path2 appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:startAngle endAngle:endAngle clockwise: YES];
     [path2 fill];
+    
+    // title
+   // #define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
+//    NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"MEM" attributes:STRING_ATTR];
+//    NSSize stringSize = [stringToDraw size];
+//    stringSize.height -= 1;
+//    NSPoint destPoint = NSMakePoint((22 - stringSize.width) / 2, ((22 - stringSize.height) / 2));
+//    [stringToDraw drawAtPoint: destPoint];
     
     [myImage unlockFocus];
     

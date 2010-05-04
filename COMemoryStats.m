@@ -21,7 +21,8 @@ static CGFloat percent;
     host_statistics( mach_host_self(  ), HOST_VM_INFO,
                     ( host_info_t ) & vm_stat, &infoCount );
     NSInteger freeMem = pageSize * vm_stat.free_count / 1024;
-    percent = (CGFloat) (totalMem - freeMem) / totalMem;
+    NSInteger inactiveMem = pageSize * vm_stat.inactive_count / 1024;
+    percent = (CGFloat) (totalMem - freeMem - inactiveMem) / totalMem;
     return percent;
 }
 

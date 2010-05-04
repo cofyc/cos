@@ -7,6 +7,11 @@ Project
     Name: cos (c of stats)
     Class Domain Name: CO
 
+Docs
+----
+    Memory Stats    
+        show inactive as free
+
 Author
 -------
     Yecheng Fu <cofyc.jackson@gmail.com> (a.k.a Cofyc)

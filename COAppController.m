@@ -48,10 +48,8 @@ static NSTimer *_checkTimer = nil;
     CGFloat imageChartRadius = 8.5;
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
-    CGFloat mem_percent = [COMemoryStats getPercent];
+    CGFloat mem_percent = [COMemoryStats getPercentWithInactiveAsFree:YES];
 
-   
-    
     
     NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
     

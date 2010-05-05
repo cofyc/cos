@@ -1,11 +1,25 @@
 #import "COMemoryStats.h"
+#import <mach/host_info.h>
+#import <mach/mach_host.h>
+#import <mach/mach_init.h>
+#import <mach/mach_interface.h>
+#import <mach/mach_port.h>
+#import <mach/mach_traps.h>
+#import <mach/mach_types.h>
+#import <mach/machine.h>
+#import <mach/processor_info.h>
+#import <mach/shared_region.h>
+#import <mach/task.h>
+#import <mach/thread_act.h>
+#import <mach/time_value.h>
+#import <mach/vm_map.h>
 
 
 @implementation COMemoryStats
 
 static CGFloat percent;
 
-+ (CGFloat)getPercent;
++ (CGFloat)getPercentWithInactiveAsFree:(BOOL)inactiveAsFree
 {
     host_basic_info_data_t hostInfo;
     mach_msg_type_number_t infoCount;
@@ -22,7 +36,11 @@ static CGFloat percent;
                     ( host_info_t ) & vm_stat, &infoCount );
     NSInteger freeMem = pageSize * vm_stat.free_count / 1024;
     NSInteger inactiveMem = pageSize * vm_stat.inactive_count / 1024;
-    percent = (CGFloat) (totalMem - freeMem - inactiveMem) / totalMem;
+    if (inactiveAsFree) {
+        percent = (CGFloat) (totalMem - freeMem - inactiveMem) / totalMem;
+    } else {
+        percent = (CGFloat) (totalMem - freeMem) / totalMem;
+    }
     return percent;
 }
 

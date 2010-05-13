@@ -1,5 +1,6 @@
 #import "COAppController.h"
 #import "COMemoryStats.h"
+#import <Sparkle/Sparkle.h>
 
 @implementation COAppController
 

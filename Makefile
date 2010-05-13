@@ -5,7 +5,7 @@ all::
 release:
 	xcodebuild -project CoStats.xcodeproj build
 
-install: uninstall
+install: uninstall release
 	cp -r build/Release/CoStats.app "/Applications"
 
 uninstall:
@@ -18,7 +18,7 @@ clean:
 	rm -rf build
 	rm -rf *.dmg
 
-dmg:
-	./gendmg.sh
+package: build/Release/CoStats.app
+	./package.py
 
 all:: debug

@@ -16,5 +16,9 @@ debug:
 
 clean:
 	rm -rf build
+	rm -rf *.dmg
+
+dmg:
+	./gendmg.sh
 
 all:: debug

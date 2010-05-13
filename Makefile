@@ -11,14 +11,12 @@ install: uninstall release
 uninstall:
 	rm -rf "/Applications/CoStats.app"
 
-debug:
-	xcodebuild -project CoStats.xcodeproj build
-
 clean:
 	rm -rf build
 	rm -rf *.dmg
+	rm -rf appcast.xml
 
-package: build/Release/CoStats.app
+package: release
 	./package.py
 
-all:: debug
+all:: release

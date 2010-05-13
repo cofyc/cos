@@ -1,4 +1,6 @@
 #!/usr/bin/env python2.6
+#
+#
 
 import os
 import sys
@@ -44,7 +46,8 @@ os.system("rm -rf %s" % dmgfile)
 os.system("hdiutil create -srcfolder build/Release/CoStats.app %s" % dmgfile)
 
 print("Signing %s..." % dmgfile)
-signed = commands.getoutput("./sign_update.rb %s %s" % (dmgfile, priv_key))
+# or use Sparkle's sign_update.rb
+signed = commands.getoutput('openssl dgst -sha1 -binary < "%s" | openssl dgst -dss1 -sign "%s" | openssl enc -base64' % (dmgfile, priv_key))
 print("---> %s"  % signed)
 
 print("Get App Size...")

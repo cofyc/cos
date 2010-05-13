@@ -1,17 +1,10 @@
-App
----
-    Name: CoStats
+# What is CoStats
 
-Project
--------
-    Name: cos (c of stats)
-    Class Domain Name: CO
+CoStats stands for C of Stats.
 
-Docs
-----
-    Memory Stats    
-        show inactive as free
+# What is cos
 
-Author
--------
-    Yecheng Fu <cofyc.jackson@gmail.com> (a.k.a Cofyc)
+cos is project of CoStats.
+
+# Authors
+  Yecheng Fu <cofyc.jackson@gmail.com> (a.k.a Cofyc)

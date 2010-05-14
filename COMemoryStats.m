@@ -19,7 +19,7 @@
 
 static CGFloat percent;
 
-+ (CGFloat)getPercentWithInactiveAsFree:(BOOL)inactiveAsFree
++ (CGFloat)getPercent
 {
     host_basic_info_data_t hostInfo;
     mach_msg_type_number_t infoCount;
@@ -36,7 +36,7 @@ static CGFloat percent;
                     ( host_info_t ) & vm_stat, &infoCount );
     NSInteger freeMem = pageSize * vm_stat.free_count / 1024;
     NSInteger inactiveMem = pageSize * vm_stat.inactive_count / 1024;
-    if (inactiveAsFree) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"inactiveAsFree"]) {
         percent = (CGFloat) (totalMem - freeMem - inactiveMem) / totalMem;
     } else {
         percent = (CGFloat) (totalMem - freeMem) / totalMem;

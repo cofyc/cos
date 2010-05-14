@@ -1,6 +1,6 @@
 #import "COAppController.h"
 #import "COMemoryStats.h"
-#import <Sparkle/Sparkle.h>
+#import "COPrefsWindowController.h"
 
 @implementation COAppController
 
@@ -19,6 +19,10 @@ static NSTimer *_checkTimer = nil;
     NSMenuItem *menuItem;
     // Menu
     menu = [[NSMenu alloc] initWithTitle:@""];
+    // Preference Item
+    menuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(editPreferences:) keyEquivalent:@","];
+    [menuItem setTarget: self];
+    [menu addItem: menuItem];
     // Menu Item: Quit
     menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(closeApp:) keyEquivalent:@"q"];
     [menuItem setTarget: self];
@@ -49,7 +53,7 @@ static NSTimer *_checkTimer = nil;
     CGFloat imageChartRadius = 8.5;
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
-    CGFloat mem_percent = [COMemoryStats getPercentWithInactiveAsFree:YES];
+    CGFloat mem_percent = [COMemoryStats getPercent];
 
     
     NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
@@ -82,6 +86,12 @@ static NSTimer *_checkTimer = nil;
     // set image
     [_statusItem setImage:myImage];
     [myImage release];
+}
+
+- (IBAction)editPreferences:(id)sender
+{
+	[[COPrefsWindowController sharedPrefsWindowController] showWindow:nil];
+    [NSApp activateIgnoringOtherApps:YES]; // need this if you set LSUIElement = 1
 }
 
 @end

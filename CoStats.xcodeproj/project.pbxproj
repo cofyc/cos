@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		FB577C25119D0594006C07D5 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C23119D0594006C07D5 /* General.tiff */; };
+		FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C24119D0594006C07D5 /* Software Update.tiff */; };
+		FB577C4C119D0A4B006C07D5 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB577C4B119D0A4B006C07D5 /* Preferences.xib */; };
+		FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */; };
+		FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */; };
 		FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */ = {isa = PBXBuildFile; fileRef = FB824176118D5D68000B6969 /* COMemoryStats.m */; };
 		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
 		FB908638119C31370072C130 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
@@ -39,6 +44,13 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB577C23119D0594006C07D5 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
+		FB577C24119D0594006C07D5 /* Software Update.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Software Update.tiff"; sourceTree = "<group>"; };
+		FB577C4B119D0A4B006C07D5 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		FB577C5A119D0B64006C07D5 /* COPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COPrefsWindowController.h; sourceTree = "<group>"; };
+		FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COPrefsWindowController.m; sourceTree = "<group>"; };
+		FB577C5F119D1908006C07D5 /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPrefsWindowController.h; sourceTree = "<group>"; };
+		FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPrefsWindowController.m; sourceTree = "<group>"; };
 		FB824176118D5D68000B6969 /* COMemoryStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COMemoryStats.m; sourceTree = "<group>"; };
 		FB824178118D5D68000B6969 /* COMemoryStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COMemoryStats.h; sourceTree = "<group>"; };
 		FB82417C118D5D68000B6969 /* COAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppController.m; sourceTree = "<group>"; };
@@ -64,6 +76,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB577C5F119D1908006C07D5 /* DBPrefsWindowController.h */,
+				FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */,
+				FB577C5A119D0B64006C07D5 /* COPrefsWindowController.h */,
+				FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */,
 				FB824178118D5D68000B6969 /* COMemoryStats.h */,
 				FB824176118D5D68000B6969 /* COMemoryStats.m */,
 				FB82417D118D5D68000B6969 /* COAppController.h */,
@@ -123,9 +139,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB577C23119D0594006C07D5 /* General.tiff */,
+				FB577C24119D0594006C07D5 /* Software Update.tiff */,
 				FB90868A119C4A2A0072C130 /* dsa_pub.pem */,
 				FBFCB151118DA87200CE0B97 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				FB577C4B119D0A4B006C07D5 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -185,6 +204,9 @@
 			files = (
 				FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */,
 				FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */,
+				FB577C25119D0594006C07D5 /* General.tiff in Resources */,
+				FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */,
+				FB577C4C119D0A4B006C07D5 /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +220,8 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				FB82417E118D5D68000B6969 /* COMemoryStats.m in Sources */,
 				FB824181118D5D68000B6969 /* COAppController.m in Sources */,
+				FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */,
+				FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

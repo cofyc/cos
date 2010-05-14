@@ -4,6 +4,6 @@
 @interface COMemoryStats : NSObject {
 }
 
-+ (CGFloat)getPercentWithInactiveAsFree:(BOOL)inactiveAsFree;
++ (CGFloat)getPercent;
 
 @end

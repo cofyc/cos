@@ -19,6 +19,7 @@
 		FB908638119C31370072C130 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB908649119C31CA0072C130 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FB90868A119C4A2A0072C130 /* dsa_pub.pem */; };
+		FBE8A4FA11A014E4007232F2 /* COLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8A4F911A014E4007232F2 /* COLoginItem.m */; };
 		FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFCB151118DA87200CE0B97 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		FB82417D118D5D68000B6969 /* COAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppController.h; sourceTree = "<group>"; };
 		FB908637119C31370072C130 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FB90868A119C4A2A0072C130 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		FBE8A4F811A014E4007232F2 /* COLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLoginItem.h; sourceTree = "<group>"; };
+		FBE8A4F911A014E4007232F2 /* COLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COLoginItem.m; sourceTree = "<group>"; };
 		FBFCB152118DA87200CE0B97 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +87,8 @@
 				FB824176118D5D68000B6969 /* COMemoryStats.m */,
 				FB82417D118D5D68000B6969 /* COAppController.h */,
 				FB82417C118D5D68000B6969 /* COAppController.m */,
+				FBE8A4F811A014E4007232F2 /* COLoginItem.h */,
+				FBE8A4F911A014E4007232F2 /* COLoginItem.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				FB824181118D5D68000B6969 /* COAppController.m in Sources */,
 				FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */,
 				FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */,
+				FBE8A4FA11A014E4007232F2 /* COLoginItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

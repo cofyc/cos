@@ -7,4 +7,6 @@
 	IBOutlet NSView *softwareUpdatePrefsView;
 }
 
+- (NSURL *)appURL;
+
 @end

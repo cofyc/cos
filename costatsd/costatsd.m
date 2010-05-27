@@ -7,7 +7,7 @@ main(int argc, const char **argv)
     const char *cmd;
 
     if (argc <= 1) {
-        cmd = "help";    
+        cmd = "help";
     } else {
         argc--;
         argv++;
@@ -16,18 +16,18 @@ main(int argc, const char **argv)
 
     // run command
     struct cmd_struct cmds[] = {
-        { "help", cmd_help },
-        { "repair", cmd_repair },
-        { "daemon", cmd_daemon },
-        { "test", cmd_test },
+        {"help", cmd_help},
+        {"repair", cmd_repair},
+        {"daemon", cmd_daemon},
+        {"test", cmd_test},
     };
 
-	for (int i = 0; i < ARRAY_SIZE(cmds); i++) {
-		struct cmd_struct *p = cmds + i;
-		if (strcmp(p->cmd, cmd))
-			continue;
+    for (int i = 0; i < ARRAY_SIZE(cmds); i++) {
+        struct cmd_struct *p = cmds + i;
+        if (strcmp(p->cmd, cmd))
+            continue;
         return p->fn(argc, argv);
-	}
+    }
 
     fprintf(stderr, "Unknown command: %s\n", cmd);
     return 0;

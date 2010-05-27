@@ -1,5 +1,5 @@
 #import "COAppController.h"
-#import "COMemoryStats.h"
+#import "COStatsdController.h"
 #import "COPrefsWindowController.h"
 
 @implementation COAppController
@@ -7,9 +7,13 @@
 static NSStatusBar *_statusBar = nil;
 static NSStatusItem *_statusItem = nil;
 static NSTimer *_checkTimer = nil;
+static COStatsdController *statsdController = nil;
 
 - (id)init
 {   
+    // start
+    statsdController = [COStatsdController sharedStatsdController];
+    
     // show menu
     NSLog(@"show menu");
     _statusBar = [NSStatusBar systemStatusBar];
@@ -53,7 +57,7 @@ static NSTimer *_checkTimer = nil;
     CGFloat imageChartRadius = 8.5;
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
-    CGFloat mem_percent = [COMemoryStats getPercent];
+    CGFloat mem_percent = [statsdController getPercent];
 
     
     NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
@@ -72,14 +76,6 @@ static NSTimer *_checkTimer = nil;
     NSInteger endAngle = startAngle +  (1 - mem_percent) * 360;
     [path2 appendBezierPathWithArcWithCenter:imageChartCenter radius:imageChartRadius startAngle:startAngle endAngle:endAngle clockwise: YES];
     [path2 fill];
-    
-    // title
-   // #define STRING_ATTR [NSDictionary dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName, nil]
-//    NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:@"MEM" attributes:STRING_ATTR];
-//    NSSize stringSize = [stringToDraw size];
-//    stringSize.height -= 1;
-//    NSPoint destPoint = NSMakePoint((22 - stringSize.width) / 2, ((22 - stringSize.height) / 2));
-//    [stringToDraw drawAtPoint: destPoint];
     
     [myImage unlockFocus];
     

@@ -53,18 +53,34 @@ get_pid_from_file(const char *pid_file, pid_t *pid)
     return 0;
 }
 
-
 static int
 remove_pid_file(const char *pid_file)
 {
     return unlink(pid_file);
 }
 
-
+static void
+get_processes(struct kinfo_proc **procs, int *number)
+{
+	int					mib[4]	= { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
+    struct	kinfo_proc* info;
+	size_t				length;
+    int					level	= 3;
+    
+    if (sysctl(mib, level, NULL, &length, NULL, 0) < 0) return;
+    if (!(info = malloc(length))) return;
+    if (sysctl(mib, level, info, &length, NULL, 0) < 0) {
+        free(info);
+        return;
+    }
+	*procs = info;
+	*number = length / sizeof(struct kinfo_proc);
+}
 int
 cmd_daemon(int argc, const char **argv)
 {
     const char *pid_file = "/var/run/costatsd.pid";
+    const char *sock_path = "/var/run/costatsd.sock";
 
     pid_t pid;
 

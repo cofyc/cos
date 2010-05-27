@@ -3,6 +3,8 @@
 
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
+#include "wrapper.h"
+
 struct cmd_struct {
     const char *cmd;
     int (*fn) (int, const char **);

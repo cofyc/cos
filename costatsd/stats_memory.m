@@ -25,7 +25,6 @@ stats_memory(struct stats_struct *stats)
     host_info(mach_host_self(), HOST_BASIC_INFO, (host_info_t) & info_host, &info_count);
     stats->total = info_host.max_mem / 1024;
 
-
     vm_size_t page_size;
     host_page_size(mach_host_self(), &page_size);
 

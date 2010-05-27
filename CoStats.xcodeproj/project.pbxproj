@@ -16,6 +16,7 @@
 		FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */; };
 		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
 		FB8BCF7211AE670900803082 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8BCF7111AE670900803082 /* Security.framework */; };
+		FB8BCFD411AE7B1A00803082 /* wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8BCFD211AE7B1A00803082 /* wrapper.m */; };
 		FB908638119C31370072C130 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB908649119C31CA0072C130 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FB90868A119C4A2A0072C130 /* dsa_pub.pem */; };
@@ -74,6 +75,8 @@
 		FB82417C118D5D68000B6969 /* COAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppController.m; sourceTree = "<group>"; };
 		FB82417D118D5D68000B6969 /* COAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppController.h; sourceTree = "<group>"; };
 		FB8BCF7111AE670900803082 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FB8BCFD211AE7B1A00803082 /* wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wrapper.m; path = costatsd/wrapper.m; sourceTree = "<group>"; };
+		FB8BCFD311AE7B1A00803082 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = costatsd/wrapper.h; sourceTree = "<group>"; };
 		FB908637119C31370072C130 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FB90868A119C4A2A0072C130 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		FBE8A4F811A014E4007232F2 /* COLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLoginItem.h; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 		FBEBDAAE11AE0A65001A881F /* costatsd */ = {
 			isa = PBXGroup;
 			children = (
+				FB8BCFD211AE7B1A00803082 /* wrapper.m */,
+				FB8BCFD311AE7B1A00803082 /* wrapper.h */,
 				FBE8C0FD11AE486300B2DB4A /* stats_network.m */,
 				FBEBDACA11AE0B74001A881F /* costatsd.m */,
 				FBEBDACB11AE0B74001A881F /* cmd_repair.m */,
@@ -318,6 +323,7 @@
 				FBEBDAD611AE0B74001A881F /* cmd_test.m in Sources */,
 				FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */,
 				FBE8C0FE11AE486300B2DB4A /* stats_network.m in Sources */,
+				FB8BCFD411AE7B1A00803082 /* wrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

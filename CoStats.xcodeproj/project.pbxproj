@@ -15,6 +15,7 @@
 		FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */; };
 		FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */; };
 		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
+		FB8BCF7211AE670900803082 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8BCF7111AE670900803082 /* Security.framework */; };
 		FB908638119C31370072C130 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB908649119C31CA0072C130 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FB90868A119C4A2A0072C130 /* dsa_pub.pem */; };
@@ -72,6 +73,7 @@
 		FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPrefsWindowController.m; sourceTree = "<group>"; };
 		FB82417C118D5D68000B6969 /* COAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppController.m; sourceTree = "<group>"; };
 		FB82417D118D5D68000B6969 /* COAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppController.h; sourceTree = "<group>"; };
+		FB8BCF7111AE670900803082 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FB908637119C31370072C130 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FB90868A119C4A2A0072C130 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		FBE8A4F811A014E4007232F2 /* COLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLoginItem.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				FB908638119C31370072C130 /* Sparkle.framework in Frameworks */,
+				FB8BCF7211AE670900803082 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +137,7 @@
 			children = (
 				FB908637119C31370072C130 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				FB8BCF7111AE670900803082 /* Security.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

@@ -20,8 +20,25 @@
 		FB908649119C31CA0072C130 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
 		FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FB90868A119C4A2A0072C130 /* dsa_pub.pem */; };
 		FBE8A4FA11A014E4007232F2 /* COLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8A4F911A014E4007232F2 /* COLoginItem.m */; };
+		FBEBDABE11AE0B10001A881F /* costatsd in Resources */ = {isa = PBXBuildFile; fileRef = FBEBDAB911AE0ACC001A881F /* costatsd */; };
+		FBEBDAD211AE0B74001A881F /* costatsd.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACA11AE0B74001A881F /* costatsd.m */; };
+		FBEBDAD311AE0B74001A881F /* cmd_repair.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACB11AE0B74001A881F /* cmd_repair.m */; };
+		FBEBDAD411AE0B74001A881F /* cmd_help.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACC11AE0B74001A881F /* cmd_help.m */; };
+		FBEBDAD511AE0B74001A881F /* cmd_daemon.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACE11AE0B74001A881F /* cmd_daemon.m */; };
+		FBEBDAD611AE0B74001A881F /* cmd_test.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACF11AE0B74001A881F /* cmd_test.m */; };
+		FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDAD011AE0B74001A881F /* stats_memory.m */; };
 		FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFCB151118DA87200CE0B97 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBEBDABF11AE0B23001A881F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBEBDAB811AE0ACC001A881F;
+			remoteInfo = costatsd;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FB908646119C315B0072C130 /* CopyFiles */ = {
@@ -60,6 +77,15 @@
 		FB90868A119C4A2A0072C130 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		FBE8A4F811A014E4007232F2 /* COLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLoginItem.h; sourceTree = "<group>"; };
 		FBE8A4F911A014E4007232F2 /* COLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COLoginItem.m; sourceTree = "<group>"; };
+		FBEBDAB911AE0ACC001A881F /* costatsd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = costatsd; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBEBDACA11AE0B74001A881F /* costatsd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = costatsd.m; path = costatsd/costatsd.m; sourceTree = "<group>"; };
+		FBEBDACB11AE0B74001A881F /* cmd_repair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_repair.m; path = costatsd/cmd_repair.m; sourceTree = "<group>"; };
+		FBEBDACC11AE0B74001A881F /* cmd_help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_help.m; path = costatsd/cmd_help.m; sourceTree = "<group>"; };
+		FBEBDACD11AE0B74001A881F /* costatsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = costatsd.h; path = costatsd/costatsd.h; sourceTree = "<group>"; };
+		FBEBDACE11AE0B74001A881F /* cmd_daemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_daemon.m; path = costatsd/cmd_daemon.m; sourceTree = "<group>"; };
+		FBEBDACF11AE0B74001A881F /* cmd_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_test.m; path = costatsd/cmd_test.m; sourceTree = "<group>"; };
+		FBEBDAD011AE0B74001A881F /* stats_memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = stats_memory.m; path = costatsd/stats_memory.m; sourceTree = "<group>"; };
+		FBEBDAD111AE0B74001A881F /* stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stats.h; path = costatsd/stats.h; sourceTree = "<group>"; };
 		FBFCB152118DA87200CE0B97 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,12 +99,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FBEBDAB711AE0ACC001A881F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FBEBDAAE11AE0A65001A881F /* costatsd */,
 				FB577C5F119D1908006C07D5 /* DBPrefsWindowController.h */,
 				FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */,
 				FB577C5A119D0B64006C07D5 /* COPrefsWindowController.h */,
@@ -90,7 +124,7 @@
 				FBE8A4F811A014E4007232F2 /* COLoginItem.h */,
 				FBE8A4F911A014E4007232F2 /* COLoginItem.m */,
 			);
-			name = Classes;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -116,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* CoStats.app */,
+				FBEBDAB911AE0ACC001A881F /* costatsd */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,7 +158,7 @@
 		29B97314FDCFA39411CA2CEA /* CoStats */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -163,6 +198,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FBEBDAAE11AE0A65001A881F /* costatsd */ = {
+			isa = PBXGroup;
+			children = (
+				FBEBDACA11AE0B74001A881F /* costatsd.m */,
+				FBEBDACB11AE0B74001A881F /* cmd_repair.m */,
+				FBEBDACC11AE0B74001A881F /* cmd_help.m */,
+				FBEBDACD11AE0B74001A881F /* costatsd.h */,
+				FBEBDACE11AE0B74001A881F /* cmd_daemon.m */,
+				FBEBDACF11AE0B74001A881F /* cmd_test.m */,
+				FBEBDAD011AE0B74001A881F /* stats_memory.m */,
+				FBEBDAD111AE0B74001A881F /* stats.h */,
+			);
+			name = costatsd;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,12 +228,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				FBEBDAC011AE0B23001A881F /* PBXTargetDependency */,
 			);
 			name = CoStats;
 			productInstallPath = "$(HOME)/Applications";
 			productName = CoStats;
 			productReference = 8D1107320486CEB800E47090 /* CoStats.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FBEBDAB811AE0ACC001A881F /* costatsd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBEBDABD11AE0AEC001A881F /* Build configuration list for PBXNativeTarget "costatsd" */;
+			buildPhases = (
+				FBEBDAB611AE0ACC001A881F /* Sources */,
+				FBEBDAB711AE0ACC001A881F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = costatsd;
+			productName = costatsd;
+			productReference = FBEBDAB911AE0ACC001A881F /* costatsd */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -198,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* CoStats */,
+				FBEBDAB811AE0ACC001A881F /* costatsd */,
 			);
 		};
 /* End PBXProject section */
@@ -207,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBEBDABE11AE0B10001A881F /* costatsd in Resources */,
 				FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */,
 				FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */,
 				FB577C25119D0594006C07D5 /* General.tiff in Resources */,
@@ -231,7 +300,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FBEBDAB611AE0ACC001A881F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBEBDAD211AE0B74001A881F /* costatsd.m in Sources */,
+				FBEBDAD311AE0B74001A881F /* cmd_repair.m in Sources */,
+				FBEBDAD411AE0B74001A881F /* cmd_help.m in Sources */,
+				FBEBDAD511AE0B74001A881F /* cmd_daemon.m in Sources */,
+				FBEBDAD611AE0B74001A881F /* cmd_test.m in Sources */,
+				FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBEBDAC011AE0B23001A881F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBEBDAB811AE0ACC001A881F /* costatsd */;
+			targetProxy = FBEBDABF11AE0B23001A881F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FBFCB151118DA87200CE0B97 /* MainMenu.xib */ = {
@@ -312,6 +402,54 @@
 			};
 			name = Release;
 		};
+		FBEBDABB11AE0ACE001A881F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-lpcap",
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = costatsd;
+			};
+			name = Debug;
+		};
+		FBEBDABC11AE0ACE001A881F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-lpcap",
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = costatsd;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +467,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBEBDABD11AE0AEC001A881F /* Build configuration list for PBXNativeTarget "costatsd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBEBDABB11AE0ACE001A881F /* Debug */,
+				FBEBDABC11AE0ACE001A881F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

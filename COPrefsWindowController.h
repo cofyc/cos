@@ -7,6 +7,8 @@
 	IBOutlet NSView *softwareUpdatePrefsView;
 }
 
+@property(readwrite) BOOL startAtLogin;
+
 - (NSURL *)appURL;
 
 @end

@@ -2,14 +2,23 @@ all::
 
 .PHONY: all install uninstall clean release debug clean
 
+debug-costatsd:
+	xcodebuild -project CoStats.xcodeproj -target costatsd -configuration Debug build
+
+debug:
+	xcodebuild -project CoStats.xcodeproj -alltargets -configuration Debug build
+
 release:
-	xcodebuild -project CoStats.xcodeproj build
+	xcodebuild -project CoStats.xcodeproj -alltargets -configuration Release build
 
 install: uninstall release
-	cp -r build/Release/CoStats.app "/Applications"
+	cp -r "build/Release/CoStats.app" "/Applications"
 
 uninstall:
 	rm -rf "/Applications/CoStats.app"
+
+test: debug
+	open "build/Debug/CoStats.app/"
 
 clean:
 	rm -rf build
@@ -19,4 +28,4 @@ clean:
 package: release
 	./package.py
 
-all:: release
+all:: debug

@@ -2,7 +2,7 @@
 #define _COSTATSD_H
 
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
-#define OFFSET_OF(STRUCT, MEMBER) ((int)&((STRUCT*)0)->MEMBER)
+#define OFFSET_OF(STRUCT, MEMBER) ((size_t)&((STRUCT*)0)->MEMBER)
 
 #include "wrapper.h"
 

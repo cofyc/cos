@@ -5,10 +5,10 @@ all:
 
 indent:
 	test -e ~/.indent.pro && cp ~/.indent.pro .indent.pro
-	sed -n 's/.*typedef\s.*\s\([a-zA-Z_]\+\);/\1/p' *.[ch] | xargs \
+	sed -n 's/.*typedef\s.*\s\([a-zA-Z_]\+\);/\1/p' *.[chm] | xargs \
 		-Itype echo '-T type' >> .indent.pro
 	# additional typenames
-	#echo '-T WINDOW' >> .indent.pro
-	indent *.[ch]
+	echo '-T pid_t' >> .indent.pro
+	indent *.[chm]
 	rm -f .indent.pro
 	rm -f *~

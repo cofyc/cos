@@ -6,7 +6,7 @@ cmd_repair(int argc, const char **argv)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    fprintf(stderr, "Reparing...");
+    fprintf(stdout, "Reparing...");
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/costatsd"];
     
     NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -26,14 +26,14 @@ cmd_repair(int argc, const char **argv)
         [attrsToSet setObject:[NSNumber numberWithInt:0] forKey:NSFileGroupOwnerAccountID];
         
         if (![fileMgr setAttributes:attrsToSet ofItemAtPath:path error:nil]) {
-            fprintf(stderr, "Unable to repair %s\n", [path UTF8String]);
+            fprintf(stdout, "failed. <path: %s>\n", [path UTF8String]);
             status = -1;
         } else {            
-            fprintf(stderr, "ok.\n");
+            fprintf(stdout, "ok.\n");
         }
         
     } else {
-        fprintf(stderr, "already ok.\n");
+        fprintf(stdout, "already ok.\n");
     }
 
     [pool release];

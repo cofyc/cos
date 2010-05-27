@@ -52,11 +52,20 @@ static COStatsdController *_sharedStatsdController= nil;
         
         if (myStatus == errAuthorizationSuccess) {
             NSFileHandle *fileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(myCommunicationPipe)];
-            NSLog(@"costatsd:%@", [fileHandle readDataToEndOfFile]);
+            NSLog(@"costatsd: %@", [[NSString alloc] initWithData:[fileHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]);
         }
         
         AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
     }
+    
+    
+    NSLog(@"starting daemon...");
+    NSMutableArray *daemonArguments = [NSMutableArray array];
+    [daemonArguments addObject:@"daemon"];
+    
+    NSTask* task = [NSTask launchedTaskWithLaunchPath:path arguments:daemonArguments];
+    [task waitUntilExit];
+    NSLog(@"ok.");
     
     return self;
 }

@@ -34,7 +34,6 @@ errorout:
 int
 cmd_test(int argc, const char **argv)
 {
-    const char *sock_path = "/var/run/costatsd.sock";
     int fd;
     if ((fd = client_connect(sock_path)) < 0) {
         die("failed to connect to sock");

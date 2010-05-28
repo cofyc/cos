@@ -16,4 +16,7 @@ int cmd_help(int argc, const char **argv);
 int cmd_daemon(int argc, const char **argv);
 int cmd_test(int argc, const char **argv);
 
+extern const char *pid_file;
+extern const char *sock_path;
+
 #endif

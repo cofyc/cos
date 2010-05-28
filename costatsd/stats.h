@@ -1,3 +1,5 @@
+#ifndef _STATS_H
+#define _STATS_H
 
 struct stats_struct {
     unsigned int total;
@@ -9,3 +11,5 @@ struct stats_struct {
 
 extern int stats_memory(struct stats_struct *stats);
 extern int stats_network(struct stats_struct *stats);
+
+#endif

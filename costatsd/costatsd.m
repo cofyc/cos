@@ -1,5 +1,8 @@
 #include "costatsd.h"
 
+const char *pid_file = "/var/run/costatsd.pid";
+const char *sock_path = "/var/run/costatsd.sock";
+
 int
 main(int argc, const char **argv)
 {

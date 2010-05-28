@@ -1,7 +1,7 @@
 
 
 all:
-	pushd `pwd`/../; make debug-costatsd; popd
+	pushd `pwd`/../ &>/dev/null; make debug-costatsd; popd
 
 indent:
 	test -e ~/.indent.pro && cp ~/.indent.pro .indent.pro

@@ -3,6 +3,12 @@
 int
 cmd_help(int argc, const char **argv)
 {
-
+    printf("Usage: costatsd COMMAND [ARGS]\n"
+           "\n"
+           "Aailable commands:\n"
+           "    test    run test code\n"
+           "    repair  self repair\n"
+           "    help    show this help info\n"
+           "    daemon  run as a daemon\n");
     return 0;
 }

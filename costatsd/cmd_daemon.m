@@ -3,6 +3,7 @@
 #include <sys/sysctl.h>
 #include <sys/socket.H>
 #include <sys/un.h>
+#include <sys/stat.h>
 
 #define QUEUE_LEN 5
 
@@ -142,25 +143,39 @@ serve(const char *sock_path)
 {
     int fd;
     int len;
+    struct stat tstat;
     struct sockaddr_un un;
+    int access_mask = 0666;
+    int old_umask;
 
     if ((fd = socket(AF_UNIX, SOCK_STREAM, 0)) < 0) {
         return -1;
     }
 
-    unlink(sock_path); 
+    /*
+     * Clean up a previous socket file if we left it around.
+     */
+    if (lstat(sock_path, &tstat) == 0) {
+        if (S_ISSOCK(tstat.st_mode))
+            unlink(sock_path); 
+    }
 
     memset(&un, 0, sizeof(un));
     un.sun_family = AF_UNIX;
-    strcpy(un.sun_path, sock_path);
+    strncpy(un.sun_path, sock_path, sizeof(un.sun_path) - 1);
     len = OFFSET_OF(struct sockaddr_un, sun_path) + strlen(un.sun_path);
-    
+    old_umask = umask(~(access_mask&0777)); 
     if (bind(fd, (struct sockaddr *)&un, len) < 0) {
-        return -2;
+        close(fd);
+        umask(old_umask);
+        return error("bind() faild");
     } 
-    
+
+    umask(old_umask);
+
     if (listen(fd, QUEUE_LEN) < 0) {
-        return -3;
+        close(fd);
+        return error("listen() failed");
     }
     
     return serve_loop(fd);
@@ -169,8 +184,12 @@ serve(const char *sock_path)
 int
 cmd_daemon(int argc, const char **argv)
 {
-    const char *pid_file = "/var/run/costatsd.pid";
-    const char *sock_path = "/var/run/costatsd.sock";
+    // this daemon should run as root
+    if (getuid() != 0) {
+        if (setuid(0)) {
+            die("unable to become root");
+        }
+    }
 
     pid_t pid;
 

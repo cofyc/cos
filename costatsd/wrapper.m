@@ -64,18 +64,6 @@ warning(const char *warn, ...)
     va_end(params);
 }
 
-char *
-xstrdup(const char *str)
-{
-    char *ret = strdup(str);
-    if (!ret) {
-        ret = strdup(str);
-        if (!ret)
-            die("Out of memory, strdup failed");
-    }
-    return ret;
-}
-
 void *
 xmalloc(size_t size)
 {
@@ -125,4 +113,40 @@ xwrite(int fd, const void *buf, size_t len)
             continue;
         return nr;
     }
+}
+
+char *
+xstrdup(const char *str)
+{
+    char *ret = strdup(str);
+    if (!ret) {
+        ret = strdup(str);
+        if (!ret)
+            die("Out of memory, strdup failed");
+    }
+    return ret;
+}
+
+/*
+ * xmemdup() allocates (size + 1) bytes of memory, duplicates "size" bytes of 
+ * "data" to the allocated memory, zero terminates the allocated memory,
+ * and returns a pointer to the allocated memory. If the allocation fails,
+ * the program dies.
+ */
+void *
+xmemdup(const void *data, size_t size)
+{
+    void *ret;
+    if (size + 1 < size)
+        die("Data too large to fit into virtual memory space.");
+    ret = xmalloc(size + 1);
+    ((char*)ret)[size] = 0;
+    return memcpy(ret, data, size);
+}
+
+char *
+xstrndup(const char *str, size_t len)
+{
+    char *p = memchr(str, '\0', len);
+    return xmemdup(str, p ? p - str : len);
 }

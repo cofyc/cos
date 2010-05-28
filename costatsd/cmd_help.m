@@ -7,7 +7,7 @@ cmd_help(int argc, const char **argv)
            "\n"
            "Aailable commands:\n"
            "    test    run test code\n"
-           "    repair  self repair\n"
+           "    repair  do self repair\n"
            "    help    show this help info\n"
            "    daemon  run as a daemon\n");
     return 0;

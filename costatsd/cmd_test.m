@@ -40,8 +40,21 @@ cmd_test(int argc, const char **argv)
     }
 
     char buf[1024];
-    xread(fd, buf, 1024);
-    printf("%s\n", buf);
 
+    char *cmds[] = {
+        "stats",
+        "anystring",
+    };
+
+    ssize_t len;
+
+    for (int i = 0; i < ARRAY_SIZE(cmds); i++) {
+        char *cmd = *(cmds + i);
+        xwrite(fd, cmd, strlen(cmd));
+        len = xread(fd, buf, sizeof(buf));
+        buf[len] = '\0';
+        printf("%s", buf);
+    }
+    close(fd);
     return 0;
 }

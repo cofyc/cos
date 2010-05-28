@@ -8,13 +8,11 @@ int error(const char *err, ...);
 void warning(const char *warn, ...);
 void info(const char *info, ...);
 
-/* String */
+/* X-series */
 char *xstrdup(const char *str);
-
-/* Memory */
+char *xstrndup(const char *str, size_t len);
 void *xmalloc(size_t size);
-
-/* Misc. */
+void *xmemdup(const void *data, size_t size);
 ssize_t xread(int fd, void *buf, size_t len);
 ssize_t xwrite(int fd, const void *buf, size_t len);
 

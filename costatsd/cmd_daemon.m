@@ -1,4 +1,5 @@
 #include "costatsd.h"
+#include "stats.h"
 #include <unistd.h>
 #include <sys/sysctl.h>
 #include <sys/socket.H>
@@ -12,10 +13,13 @@ daemonize(void)
 {
     switch (fork()) {
         case 0:
+            // child
             break;
         case -1:
+            // error
             die("fork failed");
         default:
+            // parent
             exit(0);
     }
     if (setsid() == -1)
@@ -66,7 +70,7 @@ remove_pid_file(const char *pid_file)
 }
 
 static void
-processes_get(struct kinfo_proc **procs, int *count)
+process_get(struct kinfo_proc **procs, int *count)
 {
     int mib[4] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
     struct kinfo_proc *info;
@@ -78,6 +82,7 @@ processes_get(struct kinfo_proc **procs, int *count)
 
     if (!(info = malloc(length)))
         return;
+
     if (sysctl(mib, level, info, &length, NULL, 0) < 0) {
         free(info);
         return;
@@ -94,7 +99,7 @@ process_exists(pid_t pid)
     int count = 0;
     struct kinfo_proc *info = NULL;
 
-    processes_get(&info, &count);
+    process_get(&info, &count);
 
     for (int i = 0; i < count; i++) {
         pid_t this_pid = info[i].kp_proc.p_pid;
@@ -112,8 +117,29 @@ process_exists(pid_t pid)
 static void
 serve_handle(int connection, struct sockaddr *addr, int addrlen)
 {
-    const char *test = "test string";
-    xwrite(connection, test, strlen(test));
+    char msg[4096];
+    size_t msg_len;
+    while (1) {
+        char cmd[140];
+        ssize_t len = xread(connection, cmd, sizeof(cmd));
+        if (!len)
+            break;
+        if (len < 0) {
+            close(connection);
+            return;
+        }
+        cmd[len] = '\0';
+        if (!strcmp(cmd, "stats")) {
+            struct stats_struct stats;
+            stats_memory(&stats);
+            msg_len = snprintf(msg, sizeof(msg), "total:%u free:%u inactive: %u\n", stats.total,
+                    stats.free, stats.inactive);
+        } else {
+            msg_len = snprintf(msg, sizeof(msg), "Unknown command: %s\n", cmd);
+        }
+        xwrite(connection, msg, msg_len);
+    }
+    close(connection);
 }
 
 static int
@@ -184,7 +210,7 @@ serve(const char *sock_path)
 int
 cmd_daemon(int argc, const char **argv)
 {
-    // this daemon should run as root
+    // this should run as root
     if (getuid() != 0) {
         if (setuid(0)) {
             die("unable to become root");

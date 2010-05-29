@@ -6,6 +6,6 @@
 
 + (COStatsdController*)sharedStatsdController;
 
-- (CGFloat)getPercent;
+@property(readwrite) CGFloat percent;
 
 @end

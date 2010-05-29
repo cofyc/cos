@@ -42,6 +42,8 @@ static COStatsdController *_sharedStatsdController= nil;
     return _sharedStatsdController;
 }
 
+@synthesize percent;
+
 - (id)init
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"costatsd" ofType:nil];
@@ -103,6 +105,28 @@ static COStatsdController *_sharedStatsdController= nil;
     return self;
 }
 
+static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type,
+                           CFDataRef address, const void *data, void *info)
+{
+    CFDataRef       newData;
+    assert(s != NULL);
+    assert(type == kCFSocketDataCallBack);
+    
+    newData = (CFDataRef)data;
+    assert(newData != NULL);
+    assert(CFGetTypeID(newData) == CFDataGetTypeID());
+    
+    if ( CFDataGetLength(newData) == 0 ) {
+        // End of data stream; the server is dead.
+        
+        NSLog(@"ConnectionGotData: Server died unexpectedly.");
+    } else {
+        NSLog(@"data:%s", data);
+    }
+
+    [COStatsdController sharedStatsdController];
+}
+
 - (void)testConnection
 {
     NSLog (@"connecting...");
@@ -114,18 +138,23 @@ static COStatsdController *_sharedStatsdController= nil;
     
     fd = client_connect(sock_path);
     
-    int nr;
-    char *cmd = "stats";
-    nr = write(fd, cmd, sizeof(cmd));
+    NSLog(@"fd:%d", fd);
+    CFSocketContext context = { 0, self, NULL, NULL, NULL };
     
-    nr = read(fd, buf, sizeof(buf));
+    CFSocketRef *listeningSocket = CFSocketCreateWithNative(NULL, fd,
+                                               kCFSocketDataCallBack,
+                                               AcceptCallback,
+                                               &context
+                                               );
+    assert(listeningSocket != NULL);
     
-    NSString *str = [NSString stringWithCString:buf];
-}
+    CFRunLoopSourceRef  rls;
 
-- (CGFloat)getPercent
-{
-    return 0.4;
+    rls = CFSocketCreateRunLoopSource(NULL, listeningSocket, 0);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
+    CFRelease(rls);
+    char *cmd = "stats";
+    write(fd, cmd, strlen(cmd));    
 }
 
 @end

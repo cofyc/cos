@@ -4,3 +4,8 @@
 
 * conventions
     Class Domain Name: CO
+
+* Code Samples
+    CFLocalServer
+        a sample that shows how to use UNIX domain sockets to communicate between client
+        and server programs running on the same machine.

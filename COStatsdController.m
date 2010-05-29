@@ -118,12 +118,9 @@ static COStatsdController *_sharedStatsdController= nil;
     char *cmd = "stats";
     nr = write(fd, cmd, sizeof(cmd));
     
-    int len;
     nr = read(fd, buf, sizeof(buf));
     
-    NSString *
-    
-    NSLog(@"costatsd: %@", [NSString stringWithCString:buf]);
+    NSString *str = [NSString stringWithCString:buf];
 }
 
 - (CGFloat)getPercent

@@ -63,12 +63,6 @@ get_pid_from_file(const char *pid_file, pid_t *pid)
     return 0;
 }
 
-static int
-remove_pid_file(const char *pid_file)
-{
-    return unlink(pid_file);
-}
-
 static void
 process_get(struct kinfo_proc **procs, int *count)
 {
@@ -132,7 +126,7 @@ serve_handle(int connection, struct sockaddr *addr, int addrlen)
         if (!strcmp(cmd, "stats")) {
             struct stats_struct stats;
             stats_memory(&stats);
-            msg_len = snprintf(msg, sizeof(msg), "total:%u free:%u inactive: %u\n", stats.total,
+            msg_len = snprintf(msg, sizeof(msg), "total:%u\nfree:%u\ninactive: %u\n\n", stats.total,
                     stats.free, stats.inactive);
         } else {
             msg_len = snprintf(msg, sizeof(msg), "Unknown command: %s\n", cmd);
@@ -207,6 +201,25 @@ serve(const char *sock_path)
     return serve_loop(fd);
 }
 
+typedef void (*sighandler_func)(int);
+
+static void
+remove_pid_file_on_signal(int signo)
+{
+    unlink(pid_file);
+    exit(0);
+}
+
+static void
+sighandler_push_common(sighandler_func f)
+{
+    signal(SIGINT, f);
+    signal(SIGHUP, f);
+    signal(SIGTERM, f);
+    signal(SIGQUIT, f);
+    signal(SIGPIPE, f);
+}
+
 int
 cmd_daemon(int argc, const char **argv)
 {
@@ -227,6 +240,8 @@ cmd_daemon(int argc, const char **argv)
     }
 
     daemonize();
+
+    sighandler_push_common(remove_pid_file_on_signal);
 
     if (set_pid_to_file(getpid(), pid_file) != 0) {
         return -1;

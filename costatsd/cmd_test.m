@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include "stats.h"
+#include <unistd.h>
 
 static int
 client_connect(const char *sock_path)
@@ -35,6 +36,11 @@ errorout:
 int
 cmd_test(int argc, const char **argv)
 {
+    struct stats_struct stats;
+    stats_network(&stats);
+    printf("network_in: %u\n", stats.network_in);
+    printf("network_out: %u\n", stats.network_out);
+
     int fd;
     if ((fd = client_connect(sock_path)) < 0) {
         die("failed to connect to sock");
@@ -57,6 +63,8 @@ cmd_test(int argc, const char **argv)
             printf("total: %u\n", stats.total);
             printf("inactive: %u\n", stats.inactive);
             printf("free: %u\n", stats.free);
+            printf("network_in: %u\n", stats.network_in);
+            printf("network_out: %u\n", stats.network_out);
         } else {
             len = xread(fd, buf, sizeof(buf));
             buf[len] = '\0';

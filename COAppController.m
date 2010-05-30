@@ -7,13 +7,9 @@
 static NSStatusBar *_statusBar = nil;
 static NSStatusItem *_statusItem = nil;
 static NSTimer *_checkTimer = nil;
-static COStatsdController *statsdController = nil;
 
 - (id)init
 {   
-    // start
-    statsdController = [COStatsdController sharedStatsdController];
-    
     // show menu
     NSLog(@"show menu");
     _statusBar = [NSStatusBar systemStatusBar];
@@ -40,30 +36,30 @@ static COStatsdController *statsdController = nil;
     return self;
 }
 
-- (void)closeApp:(id)sender
+- (void)update:(NSTimer *)timer;
 {
-    [[NSApplication sharedApplication] terminate:self];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    // get data
+    [[COStatsdController sharedStatsdController] stats];
+    [self drawMemoryGraph:[[COStatsdController sharedStatsdController] percent]];
+    [pool release];
 }
 
-- (void)update:(NSTimer *)timer;
+- (void)drawMemoryGraph:(CGFloat)mem_percent
 {
     /**
      * @link http://cocoadevcentral.com/d/intro_to_quartz_two/
      */
-    [statsdController stats];
-    // Currently, system status bar's height(thickness) and width(length) are 22 pixels.
     CGFloat imageHeight = 22.0;
     CGFloat imageWidth = 22.0;
     CGFloat imageChartRadius = 8.5;
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
-    CGFloat mem_percent = [statsdController percent];
-
     
-    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];    
+    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
     
     [myImage lockFocus];
-
+    
     [[NSColor darkGrayColor] setStroke];
     [[NSColor colorWithCalibratedRed:0.0 green: 0.55 blue:0.90 alpha:1.0] setFill];
     NSBezierPath *path1 = [NSBezierPath bezierPathWithOvalInRect:rect];
@@ -82,6 +78,11 @@ static COStatsdController *statsdController = nil;
     // set image
     [_statusItem setImage:myImage];
     [myImage release];
+}
+
+- (void)closeApp:(id)sender
+{
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 - (IBAction)editPreferences:(id)sender

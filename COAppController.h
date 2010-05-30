@@ -4,8 +4,12 @@
 @interface COAppController : NSObject {
 }
 
+- (void)update:(NSTimer *)timer;
+
+- (void)drawMemoryGraph:(CGFloat)mem_percent;
+
 - (void)closeApp:(id)sender;
 
-- (void)update:(NSTimer *)timer;
+- (IBAction)editPreferences:(id)sender;
 
 @end

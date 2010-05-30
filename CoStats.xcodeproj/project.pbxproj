@@ -118,7 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Resources */ = {
+		080E96DDFE201D6D7F000001 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				FBEBDAAE11AE0A65001A881F /* costatsd */,
@@ -133,7 +133,7 @@
 				FBE8A4F811A014E4007232F2 /* COLoginItem.h */,
 				FBE8A4F911A014E4007232F2 /* COLoginItem.m */,
 			);
-			name = Resources;
+			name = Sources;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -168,7 +168,7 @@
 		29B97314FDCFA39411CA2CEA /* CoStats */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Resources */,
+				080E96DDFE201D6D7F000001 /* Sources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,

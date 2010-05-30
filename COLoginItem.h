@@ -5,8 +5,8 @@
 
 }
 
-+ (BOOL) willStartAtLogin:(NSURL *)itemURL;
++ (BOOL)willStartAtLogin:(NSURL *)itemURL;
 
-+ (void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
++ (void)setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
 
 @end

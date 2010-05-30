@@ -12,7 +12,6 @@
 		FB0CBF2111B2760C009640A0 /* stats_cpu.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0CBF2011B2760C009640A0 /* stats_cpu.m */; };
 		FB577C25119D0594006C07D5 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C23119D0594006C07D5 /* General.tiff */; };
 		FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C24119D0594006C07D5 /* Software Update.tiff */; };
-		FB577C4C119D0A4B006C07D5 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB577C4B119D0A4B006C07D5 /* Preferences.xib */; };
 		FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */; };
 		FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */; };
 		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
@@ -31,7 +30,6 @@
 		FBEBDAD511AE0B74001A881F /* cmd_daemon.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACE11AE0B74001A881F /* cmd_daemon.m */; };
 		FBEBDAD611AE0B74001A881F /* cmd_test.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACF11AE0B74001A881F /* cmd_test.m */; };
 		FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDAD011AE0B74001A881F /* stats_memory.m */; };
-		FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFCB151118DA87200CE0B97 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +65,9 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0CBF2011B2760C009640A0 /* stats_cpu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = stats_cpu.m; path = costatsd/stats_cpu.m; sourceTree = "<group>"; };
+		FB54034111B2B38500E788EE /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FB577C23119D0594006C07D5 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		FB577C24119D0594006C07D5 /* Software Update.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Software Update.tiff"; sourceTree = "<group>"; };
-		FB577C4B119D0A4B006C07D5 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		FB577C5A119D0B64006C07D5 /* COPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COPrefsWindowController.h; sourceTree = "<group>"; };
 		FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COPrefsWindowController.m; sourceTree = "<group>"; };
 		FB577C5F119D1908006C07D5 /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPrefsWindowController.h; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		FBEBDACF11AE0B74001A881F /* cmd_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_test.m; path = costatsd/cmd_test.m; sourceTree = "<group>"; };
 		FBEBDAD011AE0B74001A881F /* stats_memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = stats_memory.m; path = costatsd/stats_memory.m; sourceTree = "<group>"; };
 		FBEBDAD111AE0B74001A881F /* stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stats.h; path = costatsd/stats.h; sourceTree = "<group>"; };
-		FBFCB152118DA87200CE0B97 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,12 +188,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB54034011B2B38500E788EE /* MainMenu.xib */,
 				FB577C23119D0594006C07D5 /* General.tiff */,
 				FB577C24119D0594006C07D5 /* Software Update.tiff */,
 				FB90868A119C4A2A0072C130 /* dsa_pub.pem */,
-				FBFCB151118DA87200CE0B97 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				FB577C4B119D0A4B006C07D5 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -293,11 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBEBDABE11AE0B10001A881F /* costatsd in Resources */,
-				FBFCB153118DA87200CE0B97 /* MainMenu.xib in Resources */,
 				FB90868B119C4A2A0072C130 /* dsa_pub.pem in Resources */,
 				FB577C25119D0594006C07D5 /* General.tiff in Resources */,
 				FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */,
-				FB577C4C119D0A4B006C07D5 /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,10 +338,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		FBFCB151118DA87200CE0B97 /* MainMenu.xib */ = {
+		FB54034011B2B38500E788EE /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FBFCB152118DA87200CE0B97 /* English */,
+				FB54034111B2B38500E788EE /* English */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

@@ -15,6 +15,8 @@
     _networkStatusItem = [self newStatusItem];
     _cpuStatusItem = [self newStatusItem];
     
+    _statsdController = [[COStatsdController alloc] init];
+    
     return self;
 }
 
@@ -23,13 +25,13 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     // get stats
-    [[COStatsdController sharedStatsdController] stats];
+    [_statsdController stats];
     
     // draw stats
-    [self drawMemoryGraph:[[COStatsdController sharedStatsdController] percent]];
-    [self drawCPUGraph:[[COStatsdController sharedStatsdController] cpu_user_percent]
-        withSysPercent:[[COStatsdController sharedStatsdController] cpu_sys_percent]
-       withIdlePercent:[[COStatsdController sharedStatsdController] cpu_idle_percent]];
+    [self drawMemoryGraph:[_statsdController percent]];
+//    [self drawCPUGraph:[_statsdController cpu_user_percent]
+//        withSysPercent:[_statsdController cpu_sys_percent]
+//       withIdlePercent:[_statsdController cpu_idle_percent]];
     
     [pool release];
 }
@@ -96,6 +98,11 @@
 
 - (void)drawMemoryGraph:(CGFloat)mem_percent
 {
+    static CGFloat _mem_percent;
+    if (_mem_percent == mem_percent) {
+        return;
+    }
+    
     CGFloat imageHeight = [_statusBar thickness];
     CGFloat imageWidth = [_statusBar thickness];
     CGFloat imageChartRadius = 8.5;
@@ -123,6 +130,8 @@
     
     [_networkStatusItem setImage:myImage]; 
     [myImage release];
+    
+    _mem_percent = mem_percent;
 }
 
 - (void)closeApp:(id)sender

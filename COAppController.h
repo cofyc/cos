@@ -1,5 +1,6 @@
 #import <Cocoa/Cocoa.h>
 
+@class COStatsdController;
 
 @interface COAppController : NSObject {
     @private
@@ -7,6 +8,7 @@
     NSTimer *_checkTimer;
     NSStatusItem *_networkStatusItem;
     NSStatusItem *_cpuStatusItem;
+    COStatsdController *_statsdController;
 }
 
 - (void)update:(NSTimer *)timer;

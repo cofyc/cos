@@ -81,17 +81,7 @@ AcceptCallback(CFSocketRef s,
 }
 
 
-static COStatsdController *_sharedStatsdController= nil;
-
 @implementation COStatsdController
-
-+ (COStatsdController*)sharedStatsdController
-{
-    if (!_sharedStatsdController) {
-        _sharedStatsdController = [[self alloc] init];
-    }
-    return _sharedStatsdController;
-}
 
 @synthesize percent, cpu_user_percent, cpu_sys_percent, cpu_idle_percent;
 
@@ -176,6 +166,8 @@ static COStatsdController *_sharedStatsdController= nil;
     } else {
         self.percent = (CGFloat)(stats->total - stats->free) / stats->total;
     }
+    self.percent = round(self.percent * 100) / 100;
+    NSLog(@"mem_percent:%f", self.percent);
     
     self.cpu_user_percent = (CGFloat)stats->cpu_user_percent;
     self.cpu_sys_percent = (CGFloat)stats->cpu_sys_percent;
@@ -186,6 +178,14 @@ static COStatsdController *_sharedStatsdController= nil;
 {
     char *cmd = "stats";
     write(fd, cmd, strlen(cmd));
+}
+
+- (void)dealloc
+{
+//  NSLog(@"ok");
+//    char *cmd = "kill";
+//    write(fd, cmd, strlen(cmd));
+    [super dealloc];
 }
 
 @end

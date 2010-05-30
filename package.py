@@ -10,6 +10,7 @@ from string import Template
 app = "build/Release/CoStats.app"
 plist = plistlib.readPlist("%s/Contents/Info.plist" % app)
 version = plist["CFBundleVersion"]
+version_string = plist["CFBundleShortVersionString"]
 dmgfile = "CoStats-%s.dmg" % version
 priv_key = "%s/.ssh/dsa_priv.pem" % os.path.expanduser('~')
 date = time.strftime("%a, %d %b %Y %H:%M:%S %z")
@@ -18,7 +19,7 @@ appcast_url = "http://yechengfu.com/cos/%s" % appcast
 url = "http://github.com/downloads/Cofyc/cos/%s" % dmgfile
 description = """
     <h2>* New Features</h2>
-        Memory Stats
+        Client-Server Model
 """
 appcast_tpl = """<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -28,7 +29,7 @@ appcast_tpl = """<?xml version="1.0" encoding="utf-8"?>
         <description>C Of Stats</description>
         <language>en</language>
         <item>
-            <title>CoStats $version</title>
+            <title>CoStats $version_string</title>
             <pubDate>$date</pubDate>l
             <enclosure url="$url" sparkle:version="$version" length="$length" sparkle:dsaSignature="$signed" type="application/octet-stream" />
             <description><![CDATA[$description]]>
@@ -55,7 +56,8 @@ print("Generating %s..." % appcast)
 appcast_template = Template(appcast_tpl)
 output = open(appcast, "w")
 output.write(appcast_template.substitute
-        ( version=version
+        ( version=version # compared version
+        , version_string=version_string
         , date=date
         , url=url
         , length=length

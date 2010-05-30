@@ -111,7 +111,7 @@ AcceptCallback(CFSocketRef s,
 
         AuthorizationItem myItems = {kAuthorizationRightExecute, 0, NULL, 0};
         AuthorizationRights myRights = {1, &myItems};
-        myStatus = AuthorizationCopyRights (myAuthorizationRef,&myRights, kAuthorizationEmptyEnvironment, myFlags, NULL );
+        myStatus = AuthorizationCopyRights(myAuthorizationRef, &myRights, kAuthorizationEmptyEnvironment, myFlags, NULL );
         if (myStatus |= errAuthorizationSuccess) {
             [[NSApplication sharedApplication] terminate:self];
         }

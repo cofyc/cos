@@ -159,6 +159,7 @@ serve_loop(int fd)
         }
         serve_handle(connection, (struct sockaddr *)&un, len);
     }
+    return 0;
 }
 
 static int

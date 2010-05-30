@@ -5,6 +5,10 @@
     @private
     CFSocketNativeHandle fd;
     CFSocketRef socketRef;
+    CGFloat percent;
+    CGFloat cpu_user_percent; 
+    CGFloat cpu_sys_percent; 
+    CGFloat cpu_idle_percent;
 }
 
 @property(readwrite) CGFloat percent;

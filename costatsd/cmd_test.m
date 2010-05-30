@@ -1,6 +1,7 @@
 #include "costatsd.h"
 #include <sys/socket.h>
 #include <sys/un.h>
+#include "stats.h"
 
 static int
 client_connect(const char *sock_path)
@@ -43,7 +44,6 @@ cmd_test(int argc, const char **argv)
 
     char *cmds[] = {
         "stats",
-        "anystring",
     };
 
     ssize_t len;
@@ -51,9 +51,17 @@ cmd_test(int argc, const char **argv)
     for (int i = 0; i < ARRAY_SIZE(cmds); i++) {
         char *cmd = *(cmds + i);
         xwrite(fd, cmd, strlen(cmd));
-        len = xread(fd, buf, sizeof(buf));
-        buf[len] = '\0';
-        printf("%s", buf);
+        if (!strcmp(cmd, "stats")) {
+            struct stats_struct stats;
+            len = xread(fd, &stats, sizeof(stats));
+            printf("total: %u\n", stats.total);
+            printf("inactive: %u\n", stats.inactive);
+            printf("free: %u\n", stats.free);
+        } else {
+            len = xread(fd, buf, sizeof(buf));
+            buf[len] = '\0';
+            printf("%s", buf);
+        }
     }
     close(fd);
     return 0;

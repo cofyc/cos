@@ -50,7 +50,7 @@ static COStatsdController *statsdController = nil;
     /**
      * @link http://cocoadevcentral.com/d/intro_to_quartz_two/
      */
-  
+    [statsdController stats];
     // Currently, system status bar's height(thickness) and width(length) are 22 pixels.
     CGFloat imageHeight = 22.0;
     CGFloat imageWidth = 22.0;

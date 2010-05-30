@@ -2,10 +2,17 @@
 #import <Security/Security.h>
 
 @interface COStatsdController : NSObject {
+    @private
+    CFSocketNativeHandle fd;
+    CFSocketRef socketRef;
 }
+
+@property(readwrite) CGFloat percent;
 
 + (COStatsdController*)sharedStatsdController;
 
-@property(readwrite) CGFloat percent;
+- (void)parseStats:(struct stats_struct *)stats;
+
+- (void)stats;
 
 @end

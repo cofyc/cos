@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include "costatsd/stats.h"
 
 static int
 client_connect(const char *sock_path)
@@ -30,6 +31,56 @@ errorout:
     return err;
 }
 
+static void
+AcceptCallback(CFSocketRef s,
+               CFSocketCallBackType type,
+               CFDataRef address,
+               const void *data,
+               void *info)
+{
+    CFDataRef newData;
+    assert(s != NULL);
+    assert(type == kCFSocketDataCallBack);
+    
+    newData = (CFDataRef)data;
+    assert(newData != NULL);
+    assert(CFGetTypeID(newData) == CFDataGetTypeID());
+    
+    COStatsdController *statsdController = (COStatsdController*)info;
+    
+    if (CFDataGetLength(newData) == 0) {
+        // End of data stream; the server is dead.
+        NSLog(@"ConnectionGotData: Server died unexpectedly.");
+    } else {
+        static CFMutableDataRef fBufferedPackets = NULL;
+        if (fBufferedPackets == NULL) {
+            fBufferedPackets = CFDataCreateMutable(NULL, 0);
+        }
+        
+        struct stats_struct *stats;
+        
+        // We have new data from the server.  Appending to our buffer.
+        NSLog(@"length:%d", CFDataGetLength(newData));
+        CFDataAppendBytes(fBufferedPackets, CFDataGetBytePtr(newData), CFDataGetLength(newData));
+
+        // Now see if there are any complete packets in the buffer; and, 
+        // if so, deliver them to the client.
+        do {
+            if (CFDataGetLength(fBufferedPackets) < sizeof(struct stats_struct) ) {
+                // Not enough data for the packet header; we're done.
+                break;
+            }
+            stats = (struct stats_struct *)CFDataGetBytePtr(fBufferedPackets);
+            
+            // Tell the client about the packet.
+            [statsdController parseStats:stats];
+            
+            CFDataDeleteBytes(fBufferedPackets, CFRangeMake(0, CFDataGetLength(fBufferedPackets)));
+        } while (true);
+    }
+}
+
+
 static COStatsdController *_sharedStatsdController= nil;
 
 @implementation COStatsdController
@@ -55,8 +106,8 @@ static COStatsdController *_sharedStatsdController= nil;
     OSStatus myStatus;
     
     if (([atts filePosixPermissions] & 04000) != 04000
-        || [atts fileGroupOwnerAccountID] != [NSNumber numberWithInt:0]
-        || [atts fileGroupOwnerAccountID] != [NSNumber numberWithInt:0]
+        || [atts fileOwnerAccountID] != [NSNumber numberWithInt:0]
+        || [atts fileGroupOwnerAccountID] != [NSNumber numberWithInt:1]
         ) {
         
         AuthorizationRef myAuthorizationRef;
@@ -67,12 +118,12 @@ static COStatsdController *_sharedStatsdController= nil;
             | kAuthorizationFlagPreAuthorize
             | kAuthorizationFlagExtendRights
         ;
-        
+
         AuthorizationItem myItems = {kAuthorizationRightExecute, 0, NULL, 0};
         AuthorizationRights myRights = {1, &myItems};
         myStatus = AuthorizationCopyRights (myAuthorizationRef,&myRights, kAuthorizationEmptyEnvironment, myFlags, NULL );
         if (myStatus |= errAuthorizationSuccess) {
-            
+            [[NSApplication sharedApplication] terminate:self];
         }
         
         FILE *myCommunicationPipe = NULL;
@@ -82,14 +133,15 @@ static COStatsdController *_sharedStatsdController= nil;
         
         myStatus = AuthorizationExecuteWithPrivileges(myAuthorizationRef, [path UTF8String], kAuthorizationFlagDefaults, myArguments, &myCommunicationPipe);
         
-        if (myStatus == errAuthorizationSuccess) {
-            NSFileHandle *fileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(myCommunicationPipe)];
-            NSLog(@"costatsd: %@", [[NSString alloc] initWithData:[fileHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]);
+        if (myStatus != errAuthorizationSuccess) {
+            [[NSApplication sharedApplication] terminate:self];
         }
+        
+        NSFileHandle *fileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(myCommunicationPipe)];
+        NSLog(@"costatsd: %@", [[NSString alloc] initWithData:[fileHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]);
         
         AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
     }
-    
     
     NSLog(@"starting daemon...");
     NSMutableArray *daemonArguments = [NSMutableArray array];
@@ -99,62 +151,37 @@ static COStatsdController *_sharedStatsdController= nil;
     [task waitUntilExit];
     NSLog(@"ok.");
 
-
-    [self testConnection];
-    
-    return self;
-}
-
-static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type,
-                           CFDataRef address, const void *data, void *info)
-{
-    CFDataRef       newData;
-    assert(s != NULL);
-    assert(type == kCFSocketDataCallBack);
-    
-    newData = (CFDataRef)data;
-    assert(newData != NULL);
-    assert(CFGetTypeID(newData) == CFDataGetTypeID());
-    
-    if ( CFDataGetLength(newData) == 0 ) {
-        // End of data stream; the server is dead.
-        
-        NSLog(@"ConnectionGotData: Server died unexpectedly.");
-    } else {
-        NSLog(@"data:%s", data);
-    }
-
-    [COStatsdController sharedStatsdController];
-}
-
-- (void)testConnection
-{
     NSLog (@"connecting...");
     const char *sock_path = "/var/run/costatsd.sock";
-    
-    int fd;
-    
-    char buf[4096];
-    
     fd = client_connect(sock_path);
     
     NSLog(@"fd:%d", fd);
     CFSocketContext context = { 0, self, NULL, NULL, NULL };
-    
-    CFSocketRef *listeningSocket = CFSocketCreateWithNative(NULL, fd,
-                                               kCFSocketDataCallBack,
-                                               AcceptCallback,
-                                               &context
-                                               );
-    assert(listeningSocket != NULL);
-    
-    CFRunLoopSourceRef  rls;
-
-    rls = CFSocketCreateRunLoopSource(NULL, listeningSocket, 0);
+    socketRef = CFSocketCreateWithNative(NULL,
+                                        fd,
+                                        kCFSocketDataCallBack,
+                                        AcceptCallback,
+                                        &context
+                                        );
+    CFRunLoopSourceRef rls = CFSocketCreateRunLoopSource(NULL, socketRef, 0);
     CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
     CFRelease(rls);
+    return self;
+}
+
+- (void)parseStats:(struct stats_struct *)stats
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"inactiveAsFree"]) {
+        self.percent = (CGFloat)(stats->total - stats->free - stats->inactive) / stats->total;
+    } else {
+        self.percent = (CGFloat)(stats->total - stats->free) / stats->total;
+    }
+}
+
+- (void)stats
+{
     char *cmd = "stats";
-    write(fd, cmd, strlen(cmd));    
+    write(fd, cmd, strlen(cmd));
 }
 
 @end

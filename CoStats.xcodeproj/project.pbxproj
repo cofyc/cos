@@ -79,6 +79,7 @@
 		FB8BCFD311AE7B1A00803082 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = costatsd/wrapper.h; sourceTree = "<group>"; };
 		FB908637119C31370072C130 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FB90868A119C4A2A0072C130 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		FBE5AE7011B24DF6003DC7E6 /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = protocol.h; path = costatsd/protocol.h; sourceTree = "<group>"; };
 		FBE8A4F811A014E4007232F2 /* COLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COLoginItem.h; sourceTree = "<group>"; };
 		FBE8A4F911A014E4007232F2 /* COLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COLoginItem.m; sourceTree = "<group>"; };
 		FBE8C0B411AE45A100B2DB4A /* COStatsdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COStatsdController.m; sourceTree = "<group>"; };
@@ -210,17 +211,18 @@
 		FBEBDAAE11AE0A65001A881F /* costatsd */ = {
 			isa = PBXGroup;
 			children = (
+				FBEBDACD11AE0B74001A881F /* costatsd.h */,
+				FBE5AE7011B24DF6003DC7E6 /* protocol.h */,
 				FB8BCFD211AE7B1A00803082 /* wrapper.m */,
 				FB8BCFD311AE7B1A00803082 /* wrapper.h */,
-				FBE8C0FD11AE486300B2DB4A /* stats_network.m */,
 				FBEBDACA11AE0B74001A881F /* costatsd.m */,
 				FBEBDACB11AE0B74001A881F /* cmd_repair.m */,
 				FBEBDACC11AE0B74001A881F /* cmd_help.m */,
-				FBEBDACD11AE0B74001A881F /* costatsd.h */,
 				FBEBDACE11AE0B74001A881F /* cmd_daemon.m */,
 				FBEBDACF11AE0B74001A881F /* cmd_test.m */,
-				FBEBDAD011AE0B74001A881F /* stats_memory.m */,
 				FBEBDAD111AE0B74001A881F /* stats.h */,
+				FBEBDAD011AE0B74001A881F /* stats_memory.m */,
+				FBE8C0FD11AE486300B2DB4A /* stats_network.m */,
 			);
 			name = costatsd;
 			sourceTree = "<group>";

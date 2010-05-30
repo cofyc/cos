@@ -126,12 +126,13 @@ serve_handle(int connection, struct sockaddr *addr, int addrlen)
         if (!strcmp(cmd, "stats")) {
             struct stats_struct stats;
             stats_memory(&stats);
-            msg_len = snprintf(msg, sizeof(msg), "total:%u\nfree:%u\ninactive: %u\n\n", stats.total,
-                    stats.free, stats.inactive);
+            xwrite(connection, &stats, sizeof(stats));
+        } else if (!strcmp(cmd, "exit")) {
+            kill(getpid(), SIGTERM);
         } else {
             msg_len = snprintf(msg, sizeof(msg), "Unknown command: %s\n", cmd);
+            xwrite(connection, msg, msg_len);
         }
-        xwrite(connection, msg, msg_len);
     }
     close(connection);
 }

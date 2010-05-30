@@ -40,8 +40,8 @@ cmd_repair(int argc, const char **argv)
     
     [attrsToSet removeAllObjects];
     
-    if ([attrs fileOwnerAccountID] !=[NSNumber numberWithInt:0]
-        || [attrs fileGroupOwnerAccountID] !=[NSNumber numberWithInt:1]
+    if ([attrs fileOwnerAccountID] != [NSNumber numberWithInt:0]
+        || [attrs fileGroupOwnerAccountID] != [NSNumber numberWithInt:1]
         ) {
         fprintf(stdout, "Reparing owner id...");
         [attrsToSet setObject: [NSNumber numberWithInt: 0] forKey:NSFileOwnerAccountID];

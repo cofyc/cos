@@ -126,6 +126,7 @@ serve_handle(int connection, struct sockaddr *addr, int addrlen)
         if (!strcmp(cmd, "stats")) {
             struct stats_struct stats;
             stats_memory(&stats);
+            stats_cpu(&stats);
 //            stats_network(&stats);
             xwrite(connection, &stats, sizeof(stats));
         } else if (!strcmp(cmd, "exit")) {

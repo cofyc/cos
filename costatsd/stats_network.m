@@ -150,4 +150,6 @@ stats_network(struct stats_struct *stats)
 
     stats->network_in = in_current;
     stats->network_out = out_current;
+    
+    return 0;
 }

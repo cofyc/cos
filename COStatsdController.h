@@ -8,6 +8,9 @@
 }
 
 @property(readwrite) CGFloat percent;
+@property(readwrite) CGFloat cpu_user_percent; 
+@property(readwrite) CGFloat cpu_sys_percent; 
+@property(readwrite) CGFloat cpu_idle_percent; 
 
 + (COStatsdController*)sharedStatsdController;
 

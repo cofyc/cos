@@ -93,7 +93,7 @@ static COStatsdController *_sharedStatsdController= nil;
     return _sharedStatsdController;
 }
 
-@synthesize percent;
+@synthesize percent, cpu_user_percent, cpu_sys_percent, cpu_idle_percent;
 
 - (id)init
 {
@@ -176,6 +176,10 @@ static COStatsdController *_sharedStatsdController= nil;
     } else {
         self.percent = (CGFloat)(stats->total - stats->free) / stats->total;
     }
+    
+    self.cpu_user_percent = (CGFloat)stats->cpu_user_percent;
+    self.cpu_sys_percent = (CGFloat)stats->cpu_sys_percent;
+    self.cpu_idle_percent = (CGFloat)stats->cpu_idle_percent;
 }
 
 - (void)stats

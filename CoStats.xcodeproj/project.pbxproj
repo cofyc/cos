@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		FB0CBF2111B2760C009640A0 /* stats_cpu.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0CBF2011B2760C009640A0 /* stats_cpu.m */; };
 		FB577C25119D0594006C07D5 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C23119D0594006C07D5 /* General.tiff */; };
 		FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C24119D0594006C07D5 /* Software Update.tiff */; };
 		FB577C4C119D0A4B006C07D5 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB577C4B119D0A4B006C07D5 /* Preferences.xib */; };
@@ -65,6 +66,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CoStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0CBF2011B2760C009640A0 /* stats_cpu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = stats_cpu.m; path = costatsd/stats_cpu.m; sourceTree = "<group>"; };
 		FB577C23119D0594006C07D5 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		FB577C24119D0594006C07D5 /* Software Update.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "Software Update.tiff"; sourceTree = "<group>"; };
 		FB577C4B119D0A4B006C07D5 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				FBEBDAD111AE0B74001A881F /* stats.h */,
 				FBEBDAD011AE0B74001A881F /* stats_memory.m */,
 				FBE8C0FD11AE486300B2DB4A /* stats_network.m */,
+				FB0CBF2011B2760C009640A0 /* stats_cpu.m */,
 			);
 			name = costatsd;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */,
 				FBE8C0FE11AE486300B2DB4A /* stats_network.m in Sources */,
 				FB8BCFD411AE7B1A00803082 /* wrapper.m in Sources */,
+				FB0CBF2111B2760C009640A0 /* stats_cpu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

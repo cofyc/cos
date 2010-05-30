@@ -4,7 +4,7 @@
 
 @implementation COLoginItem
 
-+ (BOOL) willStartAtLogin:(NSURL *)itemURL
++ (BOOL)willStartAtLogin:(NSURL *)itemURL
 {
     Boolean foundIt=false;
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
@@ -30,7 +30,7 @@
     return (BOOL)foundIt;
 }
 
-+ (void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled
++ (void)setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled
 {
     LSSharedFileListItemRef existingItem = NULL;
     

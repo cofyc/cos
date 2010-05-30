@@ -62,7 +62,7 @@ AcceptCallback(CFSocketRef s,
         // We have new data from the server.  Appending to our buffer.
         NSLog(@"length:%d", CFDataGetLength(newData));
         CFDataAppendBytes(fBufferedPackets, CFDataGetBytePtr(newData), CFDataGetLength(newData));
-
+        
         // Now see if there are any complete packets in the buffer; and, 
         // if so, deliver them to the client.
         do {

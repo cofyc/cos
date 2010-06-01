@@ -17,10 +17,9 @@ date = time.strftime("%a, %d %b %Y %H:%M:%S %z")
 appcast = "appcast.xml"
 appcast_url = "http://yechengfu.com/cos/%s" % appcast
 url = "http://github.com/downloads/Cofyc/cos/%s" % dmgfile
-description = """
-    <h2>* New Features</h2>
-        Client-Server Model
-"""
+release_notes_file = "RelNotes"
+description = open(release_notes_file, "r").read().replace('\n', '<br/>')
+
 appcast_tpl = """<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>

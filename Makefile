@@ -20,6 +20,9 @@ uninstall:
 test: debug
 	open "build/Debug/CoStats.app/"
 
+test-release: release
+	open "build/Release/CoStats.app/"
+
 clean:
 	rm -rf build
 	rm -rf *.dmg

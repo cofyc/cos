@@ -1,11 +1,24 @@
-* pcap
-    http://www.tcpdump.org/
-    http://www.tcpdump.org/pcap.htm
+CoStats
+======
+    * CoStats
+        UI
+    * costatsd
+        Server run as root to collection stats info.
 
-* conventions
+Conventions
+===========
     Class Domain Name: CO
 
+References
+==========
+
+* pcap
+    http://www.tcpdump.org/pcap.htm
+
+* Mac OS X Kernal: Darwin (Mach) 
+    Kernel Programming Guide: http://developer.apple.com/mac/library/documentation/Darwin/Conceptual/KernelProgramming/About/About.html
+    Kernel Interface Reference: http://web.mit.edu/darwin/src/modules/xnu/osfmk/man/
+
 * Code Samples
-    CFLocalServer
-        a sample that shows how to use UNIX domain sockets to communicate between client
-        and server programs running on the same machine.
+    CFLocalServer A sample that shows how to use UNIX domain sockets to
+    communicate between client and server programs running on the same machine.

@@ -1,10 +1,17 @@
 #include "stats.h"
+#include "kinfo.h"
+
+static struct kinfo *kinfo = NULL;
 
 int
 stats_cpu(struct stats_struct *stats)
 {
-    stats->cpu_user_percent = 0.3;
-    stats->cpu_sys_percent = 0.1;
-    stats->cpu_idle_percent = 1 - stats->cpu_user_percent - stats->cpu_sys_percent;
+    if (kinfo == NULL) {
+        kinfo = kinfo_create();
+    }
+    kinfo_get_proc_info(kinfo);
+    stats->cpu_user_percent = (double)kinfo->user_period / kinfo->total_period;
+    stats->cpu_system_percent = (double)kinfo->system_period / kinfo->total_period;
+    stats->cpu_idle_percent = (double)kinfo->idle_period / kinfo->total_period;
     return 0;
 }

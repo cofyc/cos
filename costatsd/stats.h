@@ -8,7 +8,7 @@ struct stats_struct {
     unsigned int network_in;
     unsigned int network_out;
     float        cpu_user_percent;
-    float        cpu_sys_percent;
+    float        cpu_system_percent;
     float        cpu_idle_percent;
 };
 

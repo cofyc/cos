@@ -6,14 +6,14 @@
     @private
     NSStatusBar *_statusBar;
     NSTimer *_checkTimer;
-    NSStatusItem *_networkStatusItem;
+    NSStatusItem *_memoryStatusItem;
     NSStatusItem *_cpuStatusItem;
     COStatsdController *_statsdController;
 }
 
 - (void)update:(NSTimer *)timer;
 
-- (NSStatusItem*)newStatusItem;
+- (NSStatusItem*)newStatusItem:(NSString*)title;
 
 - (void)drawCPUGraph:(CGFloat)user_percent withSysPercent:(CGFloat)sys_percent withIdlePercent:(CGFloat)idle_percent;
 

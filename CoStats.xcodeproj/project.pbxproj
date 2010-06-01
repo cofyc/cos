@@ -32,6 +32,8 @@
 		FBEBDAD511AE0B74001A881F /* cmd_daemon.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACE11AE0B74001A881F /* cmd_daemon.m */; };
 		FBEBDAD611AE0B74001A881F /* cmd_test.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDACF11AE0B74001A881F /* cmd_test.m */; };
 		FBEBDAD711AE0B74001A881F /* stats_memory.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEBDAD011AE0B74001A881F /* stats_memory.m */; };
+		FBF360AD11B4C4E800244E8D /* kinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF360AB11B4C4E800244E8D /* kinfo.m */; };
+		FBF360D911B4D52D00244E8D /* COUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF360D811B4D52D00244E8D /* COUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,10 @@
 		FBEBDACF11AE0B74001A881F /* cmd_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cmd_test.m; path = costatsd/cmd_test.m; sourceTree = "<group>"; };
 		FBEBDAD011AE0B74001A881F /* stats_memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = stats_memory.m; path = costatsd/stats_memory.m; sourceTree = "<group>"; };
 		FBEBDAD111AE0B74001A881F /* stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stats.h; path = costatsd/stats.h; sourceTree = "<group>"; };
+		FBF360AA11B4C4E800244E8D /* kinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kinfo.h; path = costatsd/kinfo.h; sourceTree = "<group>"; };
+		FBF360AB11B4C4E800244E8D /* kinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = kinfo.m; path = costatsd/kinfo.m; sourceTree = "<group>"; };
+		FBF360D711B4D52D00244E8D /* COUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COUtility.h; sourceTree = "<group>"; };
+		FBF360D811B4D52D00244E8D /* COUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,8 @@
 				FB82417C118D5D68000B6969 /* COAppController.m */,
 				FBE8A4F811A014E4007232F2 /* COLoginItem.h */,
 				FBE8A4F911A014E4007232F2 /* COLoginItem.m */,
+				FBF360D711B4D52D00244E8D /* COUtility.h */,
+				FBF360D811B4D52D00244E8D /* COUtility.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -213,6 +221,8 @@
 		FBEBDAAE11AE0A65001A881F /* costatsd */ = {
 			isa = PBXGroup;
 			children = (
+				FBF360AA11B4C4E800244E8D /* kinfo.h */,
+				FBF360AB11B4C4E800244E8D /* kinfo.m */,
 				FBEBDACD11AE0B74001A881F /* costatsd.h */,
 				FBE5AE7011B24DF6003DC7E6 /* protocol.h */,
 				FB8BCFD211AE7B1A00803082 /* wrapper.m */,
@@ -314,6 +324,7 @@
 				FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */,
 				FBE8A4FA11A014E4007232F2 /* COLoginItem.m in Sources */,
 				FBE8C0B711AE45BC00B2DB4A /* COStatsdController.m in Sources */,
+				FBF360D911B4D52D00244E8D /* COUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +341,7 @@
 				FBE8C0FE11AE486300B2DB4A /* stats_network.m in Sources */,
 				FB8BCFD411AE7B1A00803082 /* wrapper.m in Sources */,
 				FB0CBF2111B2760C009640A0 /* stats_cpu.m in Sources */,
+				FBF360AD11B4C4E800244E8D /* kinfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,5 @@
 #import "COStatsdController.h"
+#import "COUtility.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -83,7 +84,7 @@ AcceptCallback(CFSocketRef s,
 
 @implementation COStatsdController
 
-@synthesize percent, cpu_user_percent, cpu_sys_percent, cpu_idle_percent;
+@synthesize percent, cpu_user_percent, cpu_system_percent, cpu_idle_percent;
 
 - (id)init
 {
@@ -162,16 +163,20 @@ AcceptCallback(CFSocketRef s,
 - (void)parseStats:(struct stats_struct *)stats
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"inactiveAsFree"]) {
-        self.percent = (CGFloat)(stats->total - stats->free - stats->inactive) / stats->total;
+        self.percent = (double)(stats->total - stats->free - stats->inactive) / stats->total;
     } else {
-        self.percent = (CGFloat)(stats->total - stats->free) / stats->total;
+        self.percent = (double)(stats->total - stats->free) / stats->total;
     }
-    self.percent = round(self.percent * 100) / 100;
+    self.percent = [COUtility round:self.percent withPrecision:2];
     NSLog(@"mem_percent:%f", self.percent);
     
-    self.cpu_user_percent = (CGFloat)stats->cpu_user_percent;
-    self.cpu_sys_percent = (CGFloat)stats->cpu_sys_percent;
-    self.cpu_idle_percent = (CGFloat)stats->cpu_idle_percent;
+    self.cpu_user_percent = (double)stats->cpu_user_percent;
+    self.cpu_system_percent = (double)stats->cpu_system_percent;
+    self.cpu_idle_percent = (double)stats->cpu_idle_percent;
+    self.cpu_user_percent = [COUtility round:self.cpu_user_percent withPrecision:2];
+    self.cpu_system_percent = [COUtility round:self.cpu_system_percent withPrecision:2];
+    self.cpu_idle_percent = [COUtility round:self.cpu_idle_percent withPrecision:2];
+    NSLog(@"user:%f sys:%f idle: %f", self.cpu_user_percent, self.cpu_system_percent, self.cpu_idle_percent);
 }
 
 - (void)stats

@@ -26,6 +26,7 @@ test-release: release
 clean:
 	rm -rf build
 	rm -rf *.dmg
+	rm -rf package/*.app
 	rm -rf appcast.xml
 
 package: release

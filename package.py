@@ -38,22 +38,22 @@ appcast_tpl = """<?xml version="1.0" encoding="utf-8"?>
 </rss>
 """
 
-print("Generating DMG file...")
+print("---> Generating DMG file...")
 os.system("rm -rf package/CoStats.app")
 os.system("cp -rf build/Release/CoStats.app package/")
 os.system("rm -rf %s" % dmgfile)
-os.system("hdiutil create -volname CoStats -srcfolder package %s" % dmgfile)
+os.system("hdiutil create -volname CoStats-%s -srcfolder package %s" % (version, dmgfile))
 
-print("Signing %s..." % dmgfile)
+print("---> Signing %s..." % dmgfile)
 # borrowed from sunpinyin's macosx wrapper or use Sparkle's sign_update.rb
 signed = commands.getoutput('openssl dgst -sha1 -binary < "%s" | openssl dgst -dss1 -sign "%s" | openssl enc -base64' % (dmgfile, priv_key))
 print("---> %s"  % signed)
 
-print("Get App Size...")
+print("---> Getting App Size...")
 length = commands.getoutput("du -sb %s | cut -f 1" % app)
 print("---> %s" % length)
 
-print("Generating %s..." % appcast)
+print("---> Generating %s..." % appcast)
 appcast_template = Template(appcast_tpl)
 output = open(appcast, "w")
 output.write(appcast_template.substitute
@@ -67,8 +67,10 @@ output.write(appcast_template.substitute
         ).encode("utf-8")
     )
 output.close()
+print("---> OK.")
 
-print("""Done!
+print("""
+Done!
     1. Publish %s to %s
     2. Publish %s to %s
 """ % (dmgfile, url, appcast, appcast_url))

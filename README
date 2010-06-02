@@ -1,9 +1,10 @@
 CoStats
 --------
 
-CoStats stands for C of Stats.
+    CoStats stands for C of Stats.
+    It shows Mac OS X system stats on menu bar, like iStatsMenu.
 
 cos
 ---
 
-cos is project of CoStats.
+    It's project of CoStats.

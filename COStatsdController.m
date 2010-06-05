@@ -185,12 +185,4 @@ AcceptCallback(CFSocketRef s,
     write(fd, cmd, strlen(cmd));
 }
 
-- (void)dealloc
-{
-//  NSLog(@"ok");
-//    char *cmd = "kill";
-//    write(fd, cmd, strlen(cmd));
-    [super dealloc];
-}
-
 @end

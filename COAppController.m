@@ -7,15 +7,13 @@
 - (id)init
 {   
     _statusBar = [NSStatusBar systemStatusBar];
+    _memoryStatusItem = [self newStatusItem:@"Memory"];
+    _cpuStatusItem = [self newStatusItem:@"CPU"];
+    _statsdController = [[COStatsdController alloc] init];
     
     /* Setup Updater */
     _checkTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_checkTimer fire];
-    
-    _memoryStatusItem = [self newStatusItem:@"Memory"];
-    _cpuStatusItem = [self newStatusItem:@"CPU"];
-    
-    _statsdController = [[COStatsdController alloc] init];
     
     return self;
 }
@@ -29,9 +27,20 @@
     
     // draw stats
     [self drawMemoryGraph:[_statsdController percent]];
-    [self drawCPUGraph:[_statsdController cpu_user_percent]
-        withSysPercent:[_statsdController cpu_system_percent]
-       withIdlePercent:[_statsdController cpu_idle_percent]];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"cpuShow"]) {
+        if (_cpuStatusItem == nil) {
+            _cpuStatusItem = [self newStatusItem:@"CPU"];
+        }
+        [self drawCPUGraph:[_statsdController cpu_user_percent]
+            withSysPercent:[_statsdController cpu_system_percent]
+           withIdlePercent:[_statsdController cpu_idle_percent]];
+    } else {
+        if (_cpuStatusItem != nil) {
+            [_cpuStatusItem dealloc];
+        }
+        _cpuStatusItem = nil;
+    }
     
     [pool release];
 }

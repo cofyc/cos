@@ -1,4 +1,5 @@
-CoStats v0.0.5 Release Notes
+CoStats v0.0.7 Release Notes
 ============================
 
- * add CPU Graph
+ * can use CMD-W to close preferences windows
+ * add CPU show switch

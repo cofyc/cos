@@ -84,7 +84,7 @@ AcceptCallback(CFSocketRef s,
 
 @implementation COStatsdController
 
-@synthesize percent, cpu_user_percent, cpu_system_percent, cpu_idle_percent;
+@synthesize percent, cpu_user_percent, cpu_system_percent, cpu_idle_percent, network_in, network_out;
 
 - (id)init
 {
@@ -177,6 +177,9 @@ AcceptCallback(CFSocketRef s,
     self.cpu_system_percent = [COUtility round:self.cpu_system_percent withPrecision:2];
     self.cpu_idle_percent = [COUtility round:self.cpu_idle_percent withPrecision:2];
     NSLog(@"user:%f sys:%f idle: %f", self.cpu_user_percent, self.cpu_system_percent, self.cpu_idle_percent);
+    self.network_in = (double)stats->network_in;
+    self.network_out = (double)stats->network_out;
+    NSLog(@"network_in:%f, network_out:%f", self.network_in, self.network_out);
 }
 
 - (void)stats

@@ -8,6 +8,7 @@
     NSTimer *_checkTimer;
     NSStatusItem *_memoryStatusItem;
     NSStatusItem *_cpuStatusItem;
+    NSStatusItem *_networkStatusItem;
     COStatsdController *_statsdController;
 }
 
@@ -18,6 +19,8 @@
 - (void)drawCPUGraph:(CGFloat)user_percent withSysPercent:(CGFloat)sys_percent withIdlePercent:(CGFloat)idle_percent;
 
 - (void)drawMemoryGraph:(CGFloat)mem_percent;
+
+- (void)drawNetworkGraph:(CGFloat)networkIn withNetworkOut:(CGFloat)networkOut;
 
 - (void)closeApp:(id)sender;
 

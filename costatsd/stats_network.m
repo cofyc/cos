@@ -1,6 +1,7 @@
 #include "stats.h"
 #include "wrapper.h"
 
+#include <pthread.h>
 #include <pcap.h>
 #include <netinet/in_systm.h>
 #include <netinet/ip.h>
@@ -21,6 +22,8 @@ static pcap_t *handle = NULL;
 
 struct in_addr if_addr;
 
+static unsigned long int out_previous;
+static unsigned long int in_previous;
 static unsigned long int out_current;
 static unsigned long int in_current;
 
@@ -84,8 +87,8 @@ get_ip_address(const char *name, struct in_addr *addr)
     return -1;
 }
 
-static int
-setup_capture()
+static void *
+setup_capture(void *arg)
 {
     char *dev = NULL;
     char errbuf[PCAP_ERRBUF_SIZE];
@@ -105,8 +108,8 @@ setup_capture()
             } else {
                 dev = xstrndup(d->name, strlen(d->name));
             }
-            pcap_freealldevs(alldevs);
         }
+        pcap_freealldevs(alldevs);
         dev = "en1";
     }
 
@@ -142,14 +145,18 @@ int
 stats_network(struct stats_struct *stats)
 {
     if (handle == NULL) {
+        // init
+        in_current = out_current = 0;
+        in_previous = out_previous = 0;
+        pthread_t tid;
         int err;
-        if ((err = setup_capture()) != 0) {
-            die("failed to setup network capture <code:%d>", err);
-        }
+        err = pthread_create(&tid, NULL, setup_capture, NULL);
     }
 
-    stats->network_in = in_current;
-    stats->network_out = out_current;
+    stats->network_in = in_current - in_previous;
+    stats->network_out = out_current - out_previous;
+    in_previous = in_current;
+    out_previous = out_current;
     
     return 0;
 }

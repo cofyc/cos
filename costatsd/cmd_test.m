@@ -38,8 +38,11 @@ cmd_test(int argc, const char **argv)
 {
     struct stats_struct stats;
     stats_network(&stats);
+    sleep(10);
+    stats_network(&stats);
     printf("network_in: %u\n", stats.network_in);
     printf("network_out: %u\n", stats.network_out);
+    return 0;
 
     int fd;
     if ((fd = client_connect(sock_path)) < 0) {

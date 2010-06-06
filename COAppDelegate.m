@@ -9,6 +9,7 @@
     _statusBar = [NSStatusBar systemStatusBar];
     _memoryStatusItem = [self newStatusItem:@"Memory"];
     _cpuStatusItem = [self newStatusItem:@"CPU"];
+    _networkStatusItem = [self newStatusItem:@"Network"];
     _statsdController = [[COStatsdController alloc] init];
     
     /* Setup Updater */
@@ -40,12 +41,15 @@
         _cpuStatusItem = nil;
     }
     
+//    [self drawNetworkGraph:[_statsdController network_in] withNetworkOut:[_statsdController network_out]];
+    
     [pool release];
 }
 
 - (NSStatusItem*)newStatusItem:(NSString*)title
 {
     NSStatusItem *_statusItem = [[_statusBar statusItemWithLength:NSSquareStatusItemLength] retain];
+    [_statusItem setHighlightMode:YES];
     
     /* Setup Menu */
     NSMenu    *menu;
@@ -92,7 +96,7 @@
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
     
-    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
+    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageWidth, imageHeight)];
     
     [myImage lockFocus];
     
@@ -152,7 +156,7 @@
     NSPoint imageChartCenter = NSMakePoint(imageHeight / 2, imageWidth / 2);
     NSRect rect = NSMakeRect(2, 2, imageHeight - 4, imageWidth - 4);
     
-    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageHeight,  imageWidth)];
+    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageWidth, imageHeight)];
     
     [myImage lockFocus];
     
@@ -175,6 +179,39 @@
     [myImage release];
     
     _mem_percent = mem_percent;
+}
+
+
+- (void)drawNetworkGraph:(CGFloat)networkIn withNetworkOut:(CGFloat)networkOut
+{
+    static CGFloat _networkIn = -1;
+    static CGFloat _networkOut = -1;
+    if (_networkIn == networkIn && _networkOut == networkOut) {
+        return;
+    }
+    
+    CGFloat imageHeight = [_statusBar thickness];
+    CGFloat imageWidth = [_statusBar thickness];
+    
+    NSImage *myImage = [[NSImage alloc] initWithSize:NSMakeSize(imageWidth,  imageHeight)];
+    
+    [myImage lockFocus];
+ 
+    // draw network_in and network_out here
+    NSFont *stringFont = [NSFont fontWithName:@"Monaco" size:9.0];
+    NSDictionary *stringAttributes = [NSDictionary dictionaryWithObject:stringFont forKey:NSFontAttributeName];
+    NSString *in = [NSString stringWithFormat:@"%.2f", networkOut / 1024];
+    [in drawAtPoint:NSZeroPoint withAttributes:stringAttributes];
+    NSString *out = [NSString stringWithFormat:@"%.2f", networkIn / 1024];
+    [out drawAtPoint:NSMakePoint(0, 8) withAttributes:stringAttributes];
+    
+    [myImage unlockFocus];
+    
+    [_networkStatusItem setImage:myImage]; 
+    [myImage release];
+
+    _networkIn = networkIn;
+    _networkOut = networkOut;
 }
 
 - (void)closeApp:(id)sender

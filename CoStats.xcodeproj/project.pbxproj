@@ -16,7 +16,7 @@
 		FB577C26119D0594006C07D5 /* Software Update.tiff in Resources */ = {isa = PBXBuildFile; fileRef = FB577C24119D0594006C07D5 /* Software Update.tiff */; };
 		FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */; };
 		FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */; };
-		FB824181118D5D68000B6969 /* COAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppController.m */; };
+		FB824181118D5D68000B6969 /* COAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB82417C118D5D68000B6969 /* COAppDelegate.m */; };
 		FB8BCF7211AE670900803082 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8BCF7111AE670900803082 /* Security.framework */; };
 		FB8BCFD411AE7B1A00803082 /* wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8BCFD211AE7B1A00803082 /* wrapper.m */; };
 		FB908638119C31370072C130 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB908637119C31370072C130 /* Sparkle.framework */; };
@@ -77,8 +77,8 @@
 		FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COPrefsWindowController.m; sourceTree = "<group>"; };
 		FB577C5F119D1908006C07D5 /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPrefsWindowController.h; sourceTree = "<group>"; };
 		FB577C60119D1908006C07D5 /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPrefsWindowController.m; sourceTree = "<group>"; };
-		FB82417C118D5D68000B6969 /* COAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppController.m; sourceTree = "<group>"; };
-		FB82417D118D5D68000B6969 /* COAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppController.h; sourceTree = "<group>"; };
+		FB82417C118D5D68000B6969 /* COAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COAppDelegate.m; sourceTree = "<group>"; };
+		FB82417D118D5D68000B6969 /* COAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COAppDelegate.h; sourceTree = "<group>"; };
 		FB8BCF7111AE670900803082 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FB8BCFD211AE7B1A00803082 /* wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wrapper.m; path = costatsd/wrapper.m; sourceTree = "<group>"; };
 		FB8BCFD311AE7B1A00803082 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = costatsd/wrapper.h; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 				FB577C5B119D0B64006C07D5 /* COPrefsWindowController.m */,
 				FBE8C0B511AE45A100B2DB4A /* COStatsdController.h */,
 				FBE8C0B411AE45A100B2DB4A /* COStatsdController.m */,
-				FB82417D118D5D68000B6969 /* COAppController.h */,
-				FB82417C118D5D68000B6969 /* COAppController.m */,
+				FB82417D118D5D68000B6969 /* COAppDelegate.h */,
+				FB82417C118D5D68000B6969 /* COAppDelegate.m */,
 				FBE8A4F811A014E4007232F2 /* COLoginItem.h */,
 				FBE8A4F911A014E4007232F2 /* COLoginItem.m */,
 				FBF360D711B4D52D00244E8D /* COUtility.h */,
@@ -319,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				FB824181118D5D68000B6969 /* COAppController.m in Sources */,
+				FB824181118D5D68000B6969 /* COAppDelegate.m in Sources */,
 				FB577C5C119D0B64006C07D5 /* COPrefsWindowController.m in Sources */,
 				FB577C61119D1908006C07D5 /* DBPrefsWindowController.m in Sources */,
 				FBE8A4FA11A014E4007232F2 /* COLoginItem.m in Sources */,

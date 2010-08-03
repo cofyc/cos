@@ -32,4 +32,7 @@ clean:
 package: release
 	./package.py
 
+archive:
+	git archive master --prefix='cos/' | gzip > `git describe master`.tar.gz
+
 all:: debug

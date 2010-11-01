@@ -100,7 +100,7 @@ setup_capture(void *arg)
         pcap_if_t *alldevs;
         pcap_if_t *d;
         if (pcap_findalldevs(&alldevs, errbuf) == -1) {
-            return -1;
+            return NULL;
         }
 
         for (d = alldevs; d != NULL; d = d->next) {
@@ -122,7 +122,7 @@ setup_capture(void *arg)
 
     handle = pcap_open_live(dev, BUFSIZ, 1, 1000, errbuf);
     if (handle == NULL) {
-        return 2;
+        return NULL;
     }
 
     pcap_handler packet_handler;
@@ -130,7 +130,7 @@ setup_capture(void *arg)
     if (dlt == DLT_EN10MB) {
         packet_handler = eth_packet_handler;
     } else {
-        return -2;
+        return NULL;
     }
 
     pcap_loop(handle, -1, packet_handler, NULL);

@@ -6,27 +6,36 @@
 #include <sys/un.h>
 #include <sys/stat.h>
 
-#define QUEUE_LEN 5
-
 static void
 daemonize(void)
 {
+    umask(0);
+
     switch (fork()) {
         case 0:
-            // child
             break;
         case -1:
-            // error
             die("fork failed");
         default:
-            // parent
             exit(0);
     }
+
     if (setsid() == -1)
         die("setsid failed");
+
+    if (chdir("/") < 0)
+        die("chdir failed");
+
     close(0);
     close(1);
     close(2);
+
+    // if any standard file descriptor is missing open it to /dev/null */
+    int fd = open("/dev/null", O_RDWR, 0); 
+    while (fd != -1 && fd < 2)
+        fd = dup(fd);
+    if (fd == -1) 
+        die("open /dev/null or dup failed");
 }
 
 static int
@@ -37,7 +46,7 @@ set_pid_to_file(const pid_t pid, const char *pid_file)
         return error("cannot open the pid file '%s'", pid_file);
     }
 
-    if (fprintf(fp, "%ld\n", (long int)pid) < 0 || fclose(fp) != 0)
+    if (fprintf(fp, "%ld", (long int)pid) < 0 || fclose(fp) != 0)
         return error("failed to write pid file '%s'", pid_file);
 
     return 0;
@@ -49,12 +58,11 @@ get_pid_from_file(const char *pid_file, pid_t *pid)
     long int pid_num;
     FILE *fp;
 
-    if ((fp = fopen(pid_file, "r")) == NULL) {
-        return error("cannot open the pid file '%s'", pid_file);
-    }
+    if ((fp = fopen(pid_file, "r")) == NULL)
+        return -1;
 
-    if (fscanf(fp, "%ld\n", &pid_num) < 0)
-        return error("failed to read the pid file '%s'", pid_file);
+    if (fscanf(fp, "%ld", &pid_num) < 0)
+        return -2;
 
     *pid = (pid_t)pid_num;
 
@@ -127,7 +135,6 @@ serve_handle(int connection, struct sockaddr *addr, int addrlen)
             struct stats_struct stats;
             stats_memory(&stats);
             stats_cpu(&stats);
-//            stats_network(&stats);
             xwrite(connection, &stats, sizeof(stats));
         } else if (!strcmp(cmd, "exit")) {
             kill(getpid(), SIGTERM);
@@ -197,7 +204,7 @@ serve(const char *sock_path)
 
     umask(old_umask);
 
-    if (listen(fd, QUEUE_LEN) < 0) {
+    if (listen(fd, 5) < 0) {
         close(fd);
         return error("listen() failed");
     }
@@ -227,10 +234,9 @@ sighandler_push_common(sighandler_func f)
 int
 cmd_daemon(int argc, const char **argv)
 {
-    // this should run as root
     if (getuid() != 0) {
         if (setuid(0)) {
-            die("unable to become root");
+            die("unable to become root (should run as root)");
         }
     }
 

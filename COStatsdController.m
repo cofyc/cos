@@ -61,7 +61,7 @@ AcceptCallback(CFSocketRef s,
         struct stats_struct *stats;
         
         // We have new data from the server.  Appending to our buffer.
-        NSLog(@"length:%d", CFDataGetLength(newData));
+        NSLog(@"length:%ld", CFDataGetLength(newData));
         CFDataAppendBytes(fBufferedPackets, CFDataGetBytePtr(newData), CFDataGetLength(newData));
         
         // Now see if there are any complete packets in the buffer; and, 
@@ -113,7 +113,7 @@ AcceptCallback(CFSocketRef s,
         AuthorizationItem myItems = {kAuthorizationRightExecute, 0, NULL, 0};
         AuthorizationRights myRights = {1, &myItems};
         myStatus = AuthorizationCopyRights(myAuthorizationRef, &myRights, kAuthorizationEmptyEnvironment, myFlags, NULL );
-        if (myStatus |= errAuthorizationSuccess) {
+        if (myStatus != errAuthorizationSuccess) {
             [[NSApplication sharedApplication] terminate:self];
         }
         

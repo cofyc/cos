@@ -1,5 +1,6 @@
 #import <Cocoa/Cocoa.h>
 #import <Security/Security.h>
+#import "costatsd/stats.h"
 
 @interface COStatsdController : NSObject {
     @private

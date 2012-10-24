@@ -31,7 +31,7 @@ cmd_repair(int argc, const char **argv)
         [attrsToSet setObject: [NSNumber numberWithInt: permsToSet] forKey:NSFilePosixPermissions];
         
         if (![fileMgr setAttributes: attrsToSet ofItemAtPath: path error:nil]) {
-            fprintf(stdout, "failed.\n", [path UTF8String]);
+            fprintf(stdout, "%s failed.\n", [path UTF8String]);
             status = -1;
         } else {
             fprintf(stdout, "ok.\n");
@@ -49,7 +49,7 @@ cmd_repair(int argc, const char **argv)
         
         NSError *error;
         if (![fileMgr setAttributes: attrsToSet ofItemAtPath: path error:&error]) {
-            fprintf(stdout, "failed. <error: %s>\n", [path UTF8String], [[error domain] UTF8String]);
+            fprintf(stdout, "%s failed. <error: %s>\n", [path UTF8String], [[error domain] UTF8String]);
             status = -1;
         } else {
             fprintf(stdout, "ok.\n");

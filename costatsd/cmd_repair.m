@@ -12,8 +12,6 @@ cmd_repair(int argc, const char **argv)
             die("unable to become root");
         }
     }
-    
-    NSAutoreleasePool *pool =[[NSAutoreleasePool alloc] init];
 
     NSString *path =[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/costatsd"];
 
@@ -28,7 +26,7 @@ cmd_repair(int argc, const char **argv)
     if (([attrs filePosixPermissions] & 04000) != 04000) {
         fprintf(stdout, "Reparing permission...");
         int permsToSet =[attrs filePosixPermissions] | 04000;
-        [attrsToSet setObject: [NSNumber numberWithInt: permsToSet] forKey:NSFilePosixPermissions];
+        attrsToSet[NSFilePosixPermissions] = @(permsToSet);
         
         if (![fileMgr setAttributes: attrsToSet ofItemAtPath: path error:nil]) {
             fprintf(stdout, "%s failed.\n", [path UTF8String]);
@@ -40,12 +38,12 @@ cmd_repair(int argc, const char **argv)
     
     [attrsToSet removeAllObjects];
     
-    if ([attrs fileOwnerAccountID] != [NSNumber numberWithInt:0]
-        || [attrs fileGroupOwnerAccountID] != [NSNumber numberWithInt:1]
+    if ([attrs fileOwnerAccountID] != @0
+        || [attrs fileGroupOwnerAccountID] != @1
         ) {
         fprintf(stdout, "Reparing owner id...");
-        [attrsToSet setObject: [NSNumber numberWithInt: 0] forKey:NSFileOwnerAccountID];
-        [attrsToSet setObject: [NSNumber numberWithInt: 1] forKey:NSFileGroupOwnerAccountID];
+        attrsToSet[NSFileOwnerAccountID] = @0;
+        attrsToSet[NSFileGroupOwnerAccountID] = @1;
         
         NSError *error;
         if (![fileMgr setAttributes: attrsToSet ofItemAtPath: path error:&error]) {
@@ -55,8 +53,6 @@ cmd_repair(int argc, const char **argv)
             fprintf(stdout, "ok.\n");
         }
     }
-
-    [pool release];
 
     return status;
 }

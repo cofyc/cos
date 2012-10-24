@@ -47,7 +47,7 @@ AcceptCallback(CFSocketRef s,
     assert(newData != NULL);
     assert(CFGetTypeID(newData) == CFDataGetTypeID());
     
-    COStatsdController *statsdController = (COStatsdController*)info;
+    COStatsdController *statsdController = (__bridge COStatsdController *)info;
     
     if (CFDataGetLength(newData) == 0) {
         // End of data stream; the server is dead.
@@ -97,12 +97,12 @@ AcceptCallback(CFSocketRef s,
     OSStatus myStatus;
     
     if (([atts filePosixPermissions] & 04000) != 04000
-        || [atts fileOwnerAccountID] != [NSNumber numberWithInt:0]
-        || [atts fileGroupOwnerAccountID] != [NSNumber numberWithInt:1]
+        || [atts fileOwnerAccountID] != @0
+        || [atts fileGroupOwnerAccountID] != @1
         ) {
         
         AuthorizationRef myAuthorizationRef;
-        myStatus = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
+        AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
         
         AuthorizationFlags myFlags = kAuthorizationFlagDefaults
             | kAuthorizationFlagInteractionAllowed
@@ -128,8 +128,8 @@ AcceptCallback(CFSocketRef s,
             [[NSApplication sharedApplication] terminate:self];
         }
         
-        NSFileHandle *fileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(myCommunicationPipe)];
-        NSLog(@"costatsd: %@", [[NSString alloc] initWithData:[fileHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]);
+//        NSFileHandle *fileHandle = [[NSFileHandle alloc] initWithFileDescriptor: fileno(myCommunicationPipe)];
+//        NSLog(@"costatsd: %@", [[NSString alloc] initWithData:[fileHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]);
         
         AuthorizationFree(myAuthorizationRef, kAuthorizationFlagDefaults);
     }
@@ -147,7 +147,7 @@ AcceptCallback(CFSocketRef s,
     fd = client_connect(sock_path);
     
     NSLog(@"fd:%d", fd);
-    CFSocketContext context = { 0, self, NULL, NULL, NULL };
+    CFSocketContext context = { 0, (__bridge void *)(self), NULL, NULL, NULL };
     socketRef = CFSocketCreateWithNative(NULL,
                                         fd,
                                         kCFSocketDataCallBack,

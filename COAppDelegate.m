@@ -19,7 +19,6 @@
 
 - (void)update:(NSTimer *)timer
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     // get stats
     [_statsdController stats];
@@ -35,20 +34,16 @@
             withSysPercent:[_statsdController cpu_system_percent]
            withIdlePercent:[_statsdController cpu_idle_percent]];
     } else {
-        if (_cpuStatusItem != nil) {
-            [_cpuStatusItem dealloc];
-        }
         _cpuStatusItem = nil;
     }
     
 //    [self drawNetworkGraph:[_statsdController network_in] withNetworkOut:[_statsdController network_out]];
     
-    [pool release];
 }
 
 - (NSStatusItem*)newStatusItem:(NSString*)title
 {
-    NSStatusItem *_statusItem = [[_statusBar statusItemWithLength:NSSquareStatusItemLength] retain];
+    NSStatusItem *_statusItem = [_statusBar statusItemWithLength:NSSquareStatusItemLength];
     [_statusItem setHighlightMode:YES];
     
     /* Setup Menu */
@@ -68,11 +63,13 @@
     menuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(editPreferences:) keyEquivalent:@","];
     [menuItem setTarget: self];
     [menu addItem: menuItem];
+
     
     // Menu Item: Quit
     menuItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(closeApp:) keyEquivalent:@"q"];
     [menuItem setTarget: self];
     [menu addItem:menuItem];
+    
     
     // set AutoEnablesItem
     [_statusItem setMenu: menu];
@@ -137,7 +134,6 @@
     
     // set image
     [_cpuStatusItem setImage:myImage];
-    [myImage release];
     
     _user_percent = user_percent;
     _sys_percent = sys_percent;
@@ -175,8 +171,7 @@
     
     [myImage unlockFocus];
     
-    [_memoryStatusItem setImage:myImage]; 
-    [myImage release];
+    [_memoryStatusItem setImage:myImage];
     
     _mem_percent = mem_percent;
 }
@@ -199,7 +194,7 @@
  
     // draw network_in and network_out here
     NSFont *stringFont = [NSFont fontWithName:@"Monaco" size:9.0];
-    NSDictionary *stringAttributes = [NSDictionary dictionaryWithObject:stringFont forKey:NSFontAttributeName];
+    NSDictionary *stringAttributes = @{NSFontAttributeName: stringFont};
     NSString *in = [NSString stringWithFormat:@"%.2f", networkOut / 1024];
     [in drawAtPoint:NSZeroPoint withAttributes:stringAttributes];
     NSString *out = [NSString stringWithFormat:@"%.2f", networkIn / 1024];
@@ -207,8 +202,7 @@
     
     [myImage unlockFocus];
     
-    [_networkStatusItem setImage:myImage]; 
-    [myImage release];
+    [_networkStatusItem setImage:myImage];
 
     _networkIn = networkIn;
     _networkOut = networkOut;

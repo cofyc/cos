@@ -1,5 +1,4 @@
 #import "COPrefsWindowController.h"
-#import "COLoginItem.h"
 
 @implementation COPrefsWindowController
 
@@ -14,18 +13,6 @@
 - (NSURL *)appURL
 {
     return [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-}
-
-- (BOOL)startAtLogin
-{
-    return [COLoginItem willStartAtLogin:[self appURL]];
-}
-
-- (void)setStartAtLogin:(BOOL)enabled
-{
-    [self willChangeValueForKey:@"startAtLogin"];
-    [COLoginItem setStartAtLogin:[self appURL] enabled:enabled];
-    [self didChangeValueForKey:@"startAtLogin"];
 }
 
 /* NSWindow itself is actually a fairly lightweight class, and most of what we think of as standard window behavior is done by the frame view.

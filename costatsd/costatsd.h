@@ -1,5 +1,5 @@
-#ifndef _COSTATSD_H
-#define _COSTATSD_H
+#ifndef COSTATSD_H
+#define COSTATSD_H
 
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 #define OFFSET_OF(STRUCT, MEMBER) ((size_t)&((STRUCT*)0)->MEMBER)

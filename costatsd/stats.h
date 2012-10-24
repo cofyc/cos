@@ -1,5 +1,5 @@
-#ifndef _STATS_H
-#define _STATS_H
+#ifndef STATS_H
+#define STATS_H
 
 struct stats_struct {
     unsigned int total;

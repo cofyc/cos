@@ -2,7 +2,7 @@
  * Definitions of the communication protocol between client and server.
  */
 
-#ifndef _PROTOCOL_H
-#define _PROTOCOL_H
+#ifndef PROTOCOL_H
+#define PROTOCOL_H
 
 #endif

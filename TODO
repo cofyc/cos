@@ -1,1 +1,1 @@
-* new LoginItem* draw a background.png and maybe a icon.icns
+* rm AuthorizationExecuteWithPrivileges    This function has been deprecated and should no longer be used.    Use a launchd-launched helper tool and/or the Service Mangement framework for this functionality.* draw a background.png and maybe a icon.icns

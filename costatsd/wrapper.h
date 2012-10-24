@@ -1,5 +1,5 @@
-#ifndef _WRAPPER_H
-#define _WRAPPER_H
+#ifndef WRAPPER_H
+#define WRAPPER_H
 
 /* Usage */
 void usage(const char *err);

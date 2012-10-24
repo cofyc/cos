@@ -1,5 +1,5 @@
-#ifndef _KINFO_H
-#define _KINFO_H
+#ifndef KINFO_H
+#define KINFO_H
 
 #include "wrapper.h"
 

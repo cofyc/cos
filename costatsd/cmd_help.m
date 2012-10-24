@@ -10,5 +10,6 @@ cmd_help(int argc, const char **argv)
            "    repair  do self repair\n"
            "    help    show this help info\n"
            "    daemon  run as a daemon\n");
+    printf("\n");
     return 0;
 }

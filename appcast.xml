@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>CoStats</title>
+        <link>http://github.com/Cofyc/cos</link>
+        <description>C Of Stats</description>
+        <language>en</language>
+        <item>
+            <title>CoStats 0.0.7 Beta</title>
+            <pubDate>Sat, 05 Jun 2010 17:43:00 +0900</pubDate>l
+            <enclosure url="http://github.com/downloads/Cofyc/cos/CoStats-0.0.7.dmg" sparkle:version="0.0.7" length="1173520" sparkle:dsaSignature="MCwCFEFHccXC/UNPJSpsDTSpbNXTO5qaAhR8/Ij5gKBjvin7fX7spF05mnpT4w==" type="application/octet-stream" />
+            <description><![CDATA[CoStats v0.0.7 Release Notes<br/>============================<br/><br/> * can use CMD-W to close preferences windows<br/> * add CPU show switch<br/>]]>
+            </description>
+        </item>
+    </channel>
+</rss>
